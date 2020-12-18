@@ -1,0 +1,44 @@
+:root {
+  --transition-time-short: 0.2s;
+  --transition-time-medium: 0.5s;
+  --transition-time-long: 0.5s;
+
+  --content-font: serif;
+
+  --bg-color: rgb(39, 43, 48) !important;
+  --text-color: rgb(204, 204, 204);
+
+  --text-color-hover: rgb(180, 180, 180);
+  --text-color-active: rgba(255, 255, 255);
+
+  --menu-color: rgba(255, 255, 255, 0.5);
+  --menu-color-active: rgb(255, 255, 255);
+  --menu-background: rgb(0, 0, 0) !important;
+
+  --page-border: 1px solid rgba(0, 0, 0, 0.7);
+
+  --element-background: rgb(71, 75, 79);
+  --element-text-color: rgba(0, 0, 0, 1);
+  --element-border-radius: 0.75em;
+  --element-border: 1px solid rgba(0, 0, 0, 0.5);
+  --element-border-hover: 1px solid rgba(0, 0, 0, 0.8);
+  --element-border-active: 1px solid rgba(0, 0, 0, 1);
+
+  --element-selection-background: rgb(61, 65, 69);
+  --element-selection-border: 1px solid rgba(0, 0, 0, 0.7);
+  --element-selection-shadow: none;
+  --element-selection-separator: 1px solid rgba(0, 0, 0, 0.5);
+
+  --page-title-color: rgba(255, 255, 255, 0.6);
+  --page-number-color: rgba(255, 255, 255, 0.6);
+  --bookmark-color: rgb(0, 0, 0, 0.2);
+  --bookmark-color-bookmarked: rgb(164, 42, 54);
+
+  --progress-progress-height: 0.5em;
+  --progress-track-padding: 0.21em;
+  --progress-progress-background: rgb(255, 132, 0);
+  --progress-thumb-background: transparent;
+
+  --outline-color: rgb(255, 132, 0);
+  --outline-text: rgb(0, 0, 0);
+}

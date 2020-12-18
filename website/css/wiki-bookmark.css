@@ -1,0 +1,72 @@
+wiki-bookmark {
+  flex: 0 0 3em;
+}
+
+wiki-bookmark label > * {
+  float: left;
+}
+
+wiki-bookmark input[type="checkbox"] {
+  position: absolute;
+  left: -9999px;
+}
+
+wiki-bookmark input[type="checkbox"] + label {
+  float: right;
+  display: block;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 0;
+  clip: rect(0, 2em, 3em, 0);
+}
+
+wiki-bookmark input[type="checkbox"] + label:before {
+  content: "";
+  border-left: 1em solid var(--bookmark-color, silver);
+  border-right: 1em solid var(--bookmark-color, silver);
+  border-bottom: 1em solid var(--element-background, var(--bg-color, white));
+  background-color: var(--bookmark-color, silver);
+  transition: border-top-color var(--transition-time-medium), border-right-color var(--transition-time-medium),
+    border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
+}
+
+wiki-bookmark input[type="checkbox"]:checked + label:before {
+  border-right-color: var(--bookmark-color-bookmarked, black);
+  border-left-color: var(--bookmark-color-bookmarked, black);
+  background-color: var(--bookmark-color-bookmarked, black);
+  transition: border-top-color var(--transition-time-medium), border-right-color var(--transition-time-medium),
+    border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
+}
+
+wiki-bookmark input[type="checkbox"]:focus-visible + label:before {
+  outline: 2px solid var(--outline-color);
+}
+
+wiki-bookmark input[type="checkbox"]:focus-visible + label {
+  clip: rect(-2px, calc(2em + 2px), calc(3em + 2px), -2px);
+}
+
+wiki-bookmark input[type="checkbox"] ~ input {
+  transition: opacity var(--transition-time-medium);
+  box-sizing: border-box;
+  display: block;
+  text-align: center;
+  margin: 1.5em 15% 1.2em 15%;
+  width: 70%;
+  font-size: 16px;
+  padding-bottom: 0.2em;
+  background-color: transparent;
+  border: 1px solid transparent;
+  border-radius: 0;
+  color: var(--page-title-color);
+}
+
+wiki-bookmark input[type="checkbox"]:checked ~ input {
+  transition: border var(--transition-time-medium);
+}
+
+wiki-bookmark input:checked ~ input:hover,
+wiki-bookmark input:checked ~ input:focus {
+  border-bottom: 1px solid var(--page-title-color, black);
+}

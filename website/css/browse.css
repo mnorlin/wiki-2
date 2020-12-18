@@ -1,0 +1,74 @@
+#browse {
+  display: grid;
+  justify-content: center;
+  row-gap: 3em;
+  column-gap: 3em;
+  grid-template-columns: min-content 1fr min-content;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+#browse .page {
+  grid-row: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  grid-column: 1 / span 3;
+  overflow-wrap: break-word;
+  font-size: 12px;
+  border: var(--page-border, 1px solid black);
+  border-radius: var(--element-border-radius);
+  box-shadow: var(--element-shadow);
+  background: var(--element-background);
+}
+
+#browse wiki-content {
+  margin: 0 4em;
+  display: block;
+  flex: 1 1 25em;
+  font-family: var(--content-font, monospace);
+  white-space: pre-wrap;
+  opacity: 0;
+}
+
+#browse button {
+  padding: 1em 0.5em;
+  border-radius: calc(var(--element-border-radius) / 2);
+  font-size: 2em;
+  font-family: "Arial";
+}
+
+#browse .page-turner {
+  margin: calc((var(--progress-progress-height, 0px) + var(--progress-track-padding, 0px)) / 2) 0 1em 0;
+}
+
+#browse #page-number {
+  text-overflow: ellipsis;
+  display: block;
+  text-align: center;
+  width: 70%;
+  margin: 1em auto 0.8em auto;
+  padding-bottom: 0.2em;
+  font-size: 16px;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-time-medium);
+  color: var(--page-number-color);
+  border-radius: 0;
+}
+
+#browse #page-number:hover,
+#browse #page-number:focus {
+  transition: border-color var(--transition-time-medium);
+  border-bottom: 1px solid var(--page-number-color, black);
+}
+
+#browse #range-wrapper {
+  text-align: center;
+  margin-top: 1em;
+  grid-column: 2;
+}
+
+#browse #progress-percentage {
+  margin-bottom: 1em;
+}

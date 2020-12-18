@@ -1,0 +1,41 @@
+wiki-range::part(track),
+#search-results .track {
+  width: calc(100% - 2 * var(--progress-track-padding, 0px));
+  border-radius: var(--element-border-radius, 1em);
+  background-color: var(--bg-color);
+  border: var(--progress-track-border, none);
+  box-shadow: var(--progress-track-shadow, 0 0 0 1px rgba(127, 127, 127, 0.5));
+  padding: var(--progress-track-padding);
+}
+
+wiki-range::part(progress),
+#search-results .track .progress {
+  background: var(--progress-progress-background, rgb(47, 117, 246));
+  height: var(--progress-progress-height, 0.5em);
+  border-radius: var(--element-border-radius, 1em);
+  box-shadow: var(--progress-progress-shadow, none);
+}
+
+wiki-range::part(thumb) {
+  background-color: var(--progress-thumb-background, rgb(47, 117, 246));
+}
+
+wiki-range::part(track) {
+  cursor: ew-resize;
+}
+
+wiki-range::part(track):not(:active):hover {
+  filter: none;
+}
+
+wiki-range::part(progress) {
+  filter: none !important;
+}
+
+#search-results .track {
+  font-size: 0.5em;
+}
+
+#search-results .progress {
+  transition: width var(--transition-time-medium);
+}

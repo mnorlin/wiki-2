@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Everything ever written, everything that will be written, exists in Wiki 2.0" />
+    <title>Wiki 2.0</title>
+    <link rel="shortcut icon" href="/img/favicon.png" />
+    <link href="/css/style.css" rel="stylesheet" />
+    <link href="/css/themes/default-light.css" rel="stylesheet" />
+    <link media="(prefers-color-scheme: dark)" href="/css/themes/default-dark.css" rel="stylesheet" />
+    <script type="module" src="/js/components/wiki-menu.js"></script>
+    <script type="module" src="/js/components/uri-router.js"></script>
+    <script>
+      window.addEventListener("load", () => {
+        document.body.classList.remove("theme-load");
+      });
+    </script>
+  </head>
+
+  <body class="theme-load">
+    <div id="menu-bar">
+      <nav aria-label="Menu" is="wiki-menu">
+        <a href="/page">Browse</a>
+        <a href="/search">Search</a>
+        <a href="/bookmarks">Bookmarks</a>
+      </nav>
+    </div>
+
+    <uri-router path="/">
+      <template>
+        <div id="browse">
+          <section class="page">
+            <wiki-bookmark default-title="Untitled bookmark">
+              <input id="bookmark-checkbox" type="checkbox" />
+              <label for="bookmark-checkbox">Bookmarked</label>
+              <input aria-label="Bookmark title" type="text" />
+            </wiki-bookmark>
+            <wiki-content role="article">
+              <div style="white-space: normal">
+                <div style="font-size: 8em; text-align: center; padding-top: 4%">W</div>
+                <h1 style="text-align: center; font-size: 4em">Wiki 2.0</h1>
+                <p style="text-align: center; font-size: 1.2em">
+                  Everything ever written, everything that will be written, exists in this wiki.<br />
+                  With its 9×10<sup>11 589</sup> pages, the wiki is complete, all you need to do is find the right
+                  page...
+                </p>
+              </div>
+            </wiki-content>
+            <input id="page-number" aria-label="Page number" type="text" />
+          </section>
+
+          <nav class="page-turner">
+            <button data-modifier="-1" aria-label="Previous page">&lsaquo;</button>
+          </nav>
+          <div id="range-wrapper">
+            <div id="progress-percentage" aria-hidden="true"></div>
+            <wiki-range>
+              <input aria-label="Progress in Wiki" type="range" step="any" />
+            </wiki-range>
+          </div>
+          <nav class="page-turner">
+            <button data-modifier="1" aria-label="Next page">&rsaquo;</button>
+          </nav>
+        </div>
+        <script type="module" src="/js/components/wiki-bookmark.js"></script>
+        <script type="module" src="/js/components/wiki-range.js"></script>
+        <script type="module" src="/js/components/wiki-content.js"></script>
+        <script type="module" src="/js/browse.js"></script>
+      </template>
+    </uri-router>
+
+    <uri-router path="/search">
+      <template>
+        <form id="search">
+          <textarea aria-labelledby="search-button"></textarea>
+          <button id="search-button" type="submit">Search</button>
+        </form>
+
+        <div id="search-results"></div>
+        <script type="module" src="/js/components/wiki-content.js"></script>
+        <script type="module" src="/js/search.js"></script>
+      </template>
+    </uri-router>
+
+    <uri-router path="/bookmarks">
+      <template>
+        <ul id="bookmarks" aria-label="Bookmarks" is="wiki-bookmark-list"></ul>
+        <script type="module" src="/js/components/wiki-bookmark-list.js"></script>
+      </template>
+    </uri-router>
+
+    <uri-router path="/link">
+      <template>
+        <script type="module">
+          import { base64ToString } from "/js/utils/strings.js";
+
+          const workerSearch = new Worker("/js/content-finder.js", {
+            type: "module",
+          });
+          workerSearch.onmessage = (e) => {
+            window.location.href = window.location.origin + "/page/" + e.data.pageNumber;
+          };
+
+          try {
+            const link = base64ToString(window.location.pathname.split("/link/")?.[1] || "");
+            workerSearch.postMessage(link);
+          } catch {
+            window.location.href = window.location.origin;
+          }
+        </script>
+      </template>
+    </uri-router>
+  </body>
+</html>

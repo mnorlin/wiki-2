@@ -1,0 +1,107 @@
+@import url("/css/button.css");
+@import url("/css/effects.css");
+@import url("/css/menu.css");
+@import url("/css/wiki-bookmark.css");
+@import url("/css/wiki-bookmark-list.css");
+@import url("/css/wiki-range.css");
+
+@import url("/css/browse.css");
+@import url("/css/search.css");
+
+.theme-load {
+  --transition-time-short: 0s;
+  --transition-time-medium: 0s;
+  --transition-time-long: 2s;
+}
+
+body {
+  background-color: var(--bg-color, white);
+  margin: 0;
+  font-family: Helvetica, serif;
+  font-size: 14px;
+  color: var(--text-color, black);
+  transition: background-color var(--transition-time-short);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+a {
+  color: var(--text-color);
+}
+
+a:focus,
+input:focus,
+button:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+a:focus-visible,
+input:not([type="text"]):focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--outline-color);
+  outline-offset: 0.3em;
+}
+
+uri-router {
+  flex: 1;
+  display: block;
+  padding: 0 1em;
+}
+
+uri-router[aria-hidden="true"] {
+  display: none;
+}
+
+mark,
+*::selection {
+  background-color: var(--outline-color);
+  font-weight: bold;
+  color: var(--outline-text);
+}
+
+@media only screen and (min-width: 850px) and (min-height: 600px) {
+  :root {
+    --book-height: calc(100vh - 17em);
+    --book-aspect-ratio: 1.4142;
+  }
+
+  #browse {
+    grid-template-columns: min-content max-content min-content;
+    row-gap: 2em;
+    max-width: none;
+  }
+
+  #browse nav.page-turner {
+    grid-row: 1;
+  }
+
+  #browse .page {
+    height: var(--book-height);
+    width: calc(var(--book-height) * var(--book-aspect-ratio));
+    grid-column: 2;
+    grid-row: 1;
+    max-width: calc(100vw - 6 * 3em);
+    max-height: calc((100vw - 6 * 3em) / var(--book-aspect-ratio));
+  }
+
+  #browse > nav {
+    display: flex;
+    align-items: center;
+  }
+
+  #browse wiki-content {
+    overflow: auto;
+  }
+
+  #browse #range-wrapper {
+    grid-row: 2;
+  }
+
+  wiki-bookmark input[type="checkbox"] ~ input {
+    margin: 1em 15% 0.6em 15%;
+  }
+}
