@@ -66,9 +66,7 @@ function generateResult(content, searchTerm, pageNumber) {
     </div>
     
     <div aria-hidden="true">
-      <wiki-content class="content" highlight="${highlight}">
-        ${content}
-      </wiki-content>
+      <wiki-content class="content" highlight="${highlight}">${content}</wiki-content>
       <div class="track">
         <div
           class="progress"
