@@ -73,11 +73,12 @@
     <uri-router path="/search">
       <template>
         <form id="search">
-          <textarea aria-labelledby="search-button"></textarea>
+          <textarea is="wiki-textarea" aria-labelledby="search-button"></textarea>
           <button id="search-button" type="submit">Search</button>
         </form>
 
         <div id="search-results"></div>
+        <script type="module" src="/js/components/wiki-textarea.js"></script>
         <script type="module" src="/js/components/wiki-content.js"></script>
         <script type="module" src="/js/search.js"></script>
       </template>

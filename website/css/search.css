@@ -10,7 +10,7 @@
   box-sizing: border-box;
   white-space: pre-wrap;
   padding: var(--element-border-radius, 0.5em);
-  resize: vertical;
+  resize: none;
   width: 100%;
   margin: 1em 0 2.5em 0;
   border-radius: var(--element-border-radius);
@@ -18,7 +18,8 @@
   background: var(--element-background);
   box-shadow: var(--progress-track-shadow);
   color: var(--text-color);
-  height: calc(var(--element-border-radius, 0.5em) * 2 + 1.4em);
+  height: calc(var(--element-border-radius, 0.5em) * 2 + 1.1em);
+  overflow: hidden;
   -webkit-appearance: none;
 }
 
