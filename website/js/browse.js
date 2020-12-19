@@ -22,7 +22,7 @@ worker.onmessage = (e) => {
       : document.querySelector("wiki-content").removeAttribute("unsafe");
     document.querySelector("wiki-content").classList.remove("fade-out");
     document.querySelector("wiki-content").classList.add("fade-in");
-    if (!firstView) document.querySelector("wiki-range").scrollIntoView(true);
+    if (!firstView) document.querySelector(".page-turner").scrollIntoView({ block: "nearest" });
   }, getTransitionTime("long"));
 };
 
