@@ -36,9 +36,9 @@
               <label for="bookmark-checkbox">Bookmarked</label>
               <input aria-label="Bookmark title" type="text" />
             </wiki-bookmark>
-            <wiki-content role="article">
+            <wiki-content role="main">
               <div style="white-space: normal">
-                <div style="font-size: 8em; text-align: center; padding-top: 4%">W</div>
+                <div aria-hidden="true" style="font-size: 8em; text-align: center; padding-top: 4%">W</div>
                 <h1 style="text-align: center; font-size: 4em">Wiki 2.0</h1>
                 <p style="text-align: center; font-size: 1.2em">
                   Everything ever written, everything that will be written, exists in this wiki.<br />
@@ -50,18 +50,18 @@
             <input id="page-number" aria-label="Page number" type="text" />
           </section>
 
-          <nav class="page-turner">
+          <div class="page-turner">
             <button data-modifier="-1" aria-label="Previous page">&lsaquo;</button>
-          </nav>
+          </div>
           <div id="range-wrapper">
             <div id="progress-percentage" aria-hidden="true"></div>
             <wiki-range>
               <input aria-label="Progress in Wiki" type="range" step="any" />
             </wiki-range>
           </div>
-          <nav class="page-turner">
+          <div class="page-turner">
             <button data-modifier="1" aria-label="Next page">&rsaquo;</button>
-          </nav>
+          </div>
         </div>
         <script type="module" src="/js/components/wiki-bookmark.js"></script>
         <script type="module" src="/js/components/wiki-range.js"></script>
@@ -72,12 +72,12 @@
 
     <uri-router path="/search">
       <template>
-        <form id="search">
+        <form aria-label="Search" id="search">
           <textarea is="wiki-textarea" aria-labelledby="search-button"></textarea>
           <button id="search-button" type="submit">Search</button>
         </form>
 
-        <div id="search-results"></div>
+        <section aria-label="Search results" id="search-results"></section>
         <script type="module" src="/js/components/wiki-textarea.js"></script>
         <script type="module" src="/js/components/wiki-content.js"></script>
         <script type="module" src="/js/search.js"></script>

@@ -30,7 +30,7 @@ if (currentSearchTerm()) {
     type: "module",
   });
 
-  for (let i = 0; i < 6; i++) {
+  for (let i = 0; i < 4; i++) {
     workerGenerate.onmessage = (e) => {
       workerSearch.postMessage(buildWrappedResult(currentSearchTerm(), e.data.content));
     };
@@ -47,22 +47,20 @@ function generateResult(content, searchTerm, pageNumber) {
 
   result.innerHTML = `
     <div>
-      <p class="result-breadcrumb">
+      <nav class="result-breadcrumb">
         <a href="/">Wiki 2.0</a> ›
         <a href="/page">Page</a> ›
         <a href="${content === searchTerm ? `/link/${highlight}` : `/page/${pageNumber}`}">
           ${toPercent(pageNumber)} %
         </a>
-      </p>
+      </nav>
       <a
         class="result-link"
         href="/page/${pageNumber}?highlight=${encodeURIComponent(highlight)}"
       >
-        Page: ${pageNumber.toString().slice(0, 40)}...
+        ${content === searchTerm ? "Exact match" : "Nested match"}
       </a>
-      <wiki-content class="result-snippet" highlight="${highlight}" trim="300">
-        ${content}
-      </wiki-content>
+      <wiki-content class="result-snippet" highlight="${highlight}" trim="300">${content}</wiki-content>
     </div>
     
     <div aria-hidden="true">
