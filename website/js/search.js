@@ -8,8 +8,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
   if (!searchTerm) {
     return;
   }
-  window.location.href =
-    window.location.origin + "/search/" + encodeURIComponent(Array.from(searchTerm).slice(0, 3000).join(""));
+  window.location.href = window.location.origin + "/search/" + encodeURIComponent(slice(searchTerm, 0, 3000));
 });
 
 if (currentSearchTerm()) {
@@ -42,15 +41,16 @@ if (currentSearchTerm()) {
 function generateResult(content, searchTerm, pageNumber) {
   const results = document.querySelector("#search-results");
   const result = document.createElement("div");
+  const encoded = stringToBase64(searchTerm);
   result.classList.add("result");
-  const highlight = stringToBase64(searchTerm);
+  const highlight = length(searchTerm) < 500 ? encoded : "";
 
   result.innerHTML = `
     <div>
       <nav class="result-breadcrumb">
         <a href="/">Wiki 2.0</a> ›
         <a href="/page">Page</a> ›
-        <a href="${content === searchTerm ? `/link/${highlight}` : `/page/${pageNumber}`}">
+        <a href="${content === searchTerm ? `/link/${encoded}` : `/page/${pageNumber}`}">
           ${toPercent(pageNumber)} %
         </a>
       </nav>
@@ -85,8 +85,9 @@ function currentSearchTerm() {
 }
 
 function buildWrappedResult(searchTerm, randomContent) {
-  const trimmed = slice(randomContent, 0, length(randomContent) - length(searchTerm));
+  const wrapperLength = length(randomContent) - length(searchTerm);
+  const trimmed = wrapperLength > 0 ? slice(randomContent, 0, wrapperLength) : slice(randomContent, 0, 3);
 
   const cutPos = Math.floor(Math.random() * length(trimmed));
-  return [slice(trimmed, cutPos), searchTerm, slice(trimmed, 0, cutPos)].join("");
+  return [slice(trimmed, 0, cutPos), searchTerm, slice(trimmed, cutPos)].join("");
 }
