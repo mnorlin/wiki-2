@@ -18,7 +18,7 @@
   background: var(--element-background);
   box-shadow: var(--progress-track-shadow);
   color: var(--text-color);
-  height: calc(var(--element-border-radius, 0.5em) * 2 + 1.1em);
+  min-height: calc(var(--element-border-radius, 0.5em) * 2 + 1.2em);
   overflow: hidden;
   -webkit-appearance: none;
 }

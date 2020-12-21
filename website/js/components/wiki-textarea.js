@@ -2,19 +2,25 @@ class WikiTextArea extends HTMLTextAreaElement {
   constructor() {
     super();
 
+    this.updateHeight();
+
     this.addEventListener("input", (e) => {
-      this.style.height = "1px";
-      this.style.height = `${this.scrollHeight}px`;
+      this.updateHeight();
     });
   }
 
   set value(value) {
     super.value = value;
-    this.style.height = `${this.scrollHeight}px`;
+    this.updateHeight();
   }
 
   get value() {
     return super.value;
+  }
+
+  updateHeight() {
+    this.style.height = "1px";
+    this.style.height = `${this.scrollHeight}px`;
   }
 }
 
