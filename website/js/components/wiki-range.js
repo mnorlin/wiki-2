@@ -168,4 +168,5 @@ class WikiRange extends HTMLElement {
     return this.input.min;
   }
 }
-window.customElements.define("wiki-range", WikiRange);
+
+customElements.define("wiki-range", WikiRange);

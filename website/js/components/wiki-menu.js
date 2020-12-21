@@ -18,5 +18,5 @@ class MenuLinks extends HTMLElement {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  window.customElements.define("wiki-menu", MenuLinks, { extends: "nav" });
+  customElements.define("wiki-menu", MenuLinks, { extends: "nav" });
 });

@@ -34,5 +34,5 @@ class Router extends HTMLElement {
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  window.customElements.define("uri-router", Router);
+  customElements.define("uri-router", Router);
 });

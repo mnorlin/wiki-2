@@ -88,4 +88,4 @@ function sanitizeHTML(str) {
   return temp.innerHTML;
 }
 
-window.customElements.define("wiki-content", WikiContent);
+customElements.define("wiki-content", WikiContent);
