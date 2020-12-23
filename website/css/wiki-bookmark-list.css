@@ -25,7 +25,7 @@ ul#bookmarks li:before {
   border-left: 5px solid var(--bookmark-color-bookmarked);
   border-right: 5px solid var(--bookmark-color-bookmarked);
   border-bottom: 5px solid var(--element-selection-background);
-  background-color: var(--bookmark-color-bookmarkeddd);
+  background-color: var(--bookmark-color-bookmarked);
   margin-right: var(--element-border-radius);
   opacity: 0.7;
 }
