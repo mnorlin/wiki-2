@@ -29,14 +29,14 @@
 
     <uri-router path="/">
       <template>
-        <div id="browse">
+        <main id="browse">
           <section class="page">
             <wiki-bookmark default-title="Untitled bookmark">
               <input id="bookmark-checkbox" type="checkbox" />
               <label for="bookmark-checkbox">Bookmarked</label>
               <input aria-label="Bookmark title" type="text" />
             </wiki-bookmark>
-            <wiki-content role="main">
+            <wiki-content role="article">
               <div style="white-space: normal">
                 <div aria-hidden="true" style="font-size: 8em; text-align: center; padding-top: 4%">W</div>
                 <h1 style="text-align: center; font-size: 4em">Wiki 2.0</h1>
@@ -62,7 +62,7 @@
           <div class="page-turner">
             <button data-modifier="1" aria-label="Next page">&rsaquo;</button>
           </div>
-        </div>
+        </main>
         <script type="module" src="/js/components/wiki-bookmark.js"></script>
         <script type="module" src="/js/components/wiki-range.js"></script>
         <script type="module" src="/js/components/wiki-content.js"></script>

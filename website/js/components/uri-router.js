@@ -22,13 +22,11 @@ class Router extends HTMLElement {
 
       if (this.path != otherPath && otherPath.startsWith(this.path) && currentPath.startsWith(otherPath)) {
         this.setAttribute("aria-hidden", "true");
-        this.removeAttribute("role");
         return;
       }
     }
 
     this.setAttribute("aria-hidden", "false");
-    this.setAttribute("role", "main");
     this.appendChild(this.querySelector("template").content.cloneNode(true));
   }
 }
