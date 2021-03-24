@@ -4,7 +4,7 @@ class WikiTextArea extends HTMLTextAreaElement {
 
     this.updateHeight();
 
-    this.addEventListener("input", (e) => {
+    this.addEventListener("input", () => {
       this.updateHeight();
     });
   }

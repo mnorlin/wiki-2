@@ -1,26 +1,49 @@
+const template = `
+<slot>
+  <input type="checkbox" />
+  <input type="text" />
+</slot>
+`;
+
 class WikiBookmark extends HTMLElement {
   constructor() {
     super();
 
+    this.attachShadow({ mode: "open" }).innerHTML = template;
+
     this.target = document.querySelector(this.getAttribute("target"));
-    this.checkbox = this.querySelector("input[type=checkbox]");
-    this.textInput = this.querySelector("input[type=text]");
-    this.update();
+    this.handleSlotChange(this.shadowRoot.querySelector("slot"));
+    this.shadowRoot.querySelector("slot").addEventListener("slotchange", (e) => this.handleSlotChange(e.target));
+  }
 
-    const defaultTitle = this.getAttribute("default-title");
+  handleSlotChange(slot) {
+    const nodes = slot.assignedNodes({ flatten: true });
 
-    this.checkbox.addEventListener("change", () => {
-      if (this.checkbox.checked) {
-        this.bookmarked = defaultTitle || document.title;
-      } else {
-        this.bookmarked = undefined;
+    nodes.forEach((node) => {
+      if (node.type === "checkbox") {
+        this.checkbox = node;
+        this.checkbox.onchange = this.handleCheckboxChange.bind(this);
       }
-      this.checkbox.blur();
+
+      if (node.type === "text") {
+        this.textInput = node;
+        node.onkeyup = (e) => {
+          this.bookmarked = e.target.value;
+        };
+      }
     });
 
-    this.textInput?.addEventListener("keyup", (e) => {
-      this.bookmarked = e.target.value;
-    });
+    this.update();
+  }
+
+  handleCheckboxChange() {
+    if (this.checkbox.checked) {
+      const defaultTitle = this.getAttribute("default-title");
+      this.bookmarked = defaultTitle || document.title;
+    } else {
+      this.bookmarked = undefined;
+    }
+    this.checkbox.blur();
   }
 
   get bookmarked() {
