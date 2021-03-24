@@ -32,13 +32,13 @@
   --page-title-color: rgba(0, 0, 0, 0.6);
   --page-number-color: rgba(0, 0, 0, 0.6);
   --bookmark-color: rgb(180, 180, 180);
-  --bookmark-color-bookmarked: rgb(255, 0, 0);
+  --bookmark-color-bookmarked: rgb(201, 0, 0);
 
   --progress-progress-height: 0.5em;
   --progress-track-padding: 0.21em;
-  --progress-progress-background: rgb(0, 123, 255);
+  --progress-progress-background: rgb(0, 201, 201);
   --progress-thumb-background: transparent;
 
-  --outline-color: rgb(0, 123, 255);
+  --outline-color: rgb(0, 201, 201);
   --outline-text: rgb(255, 255, 255);
 }

@@ -8,6 +8,28 @@
   transition: background-color var(--transition-time-short);
 }
 
+#logo {
+  position: absolute;
+  left: 1rem;
+  top: 0.5rem;
+  display: flex;
+  align-items: center;
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+#logo svg {
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  #logo {
+    display: none;
+  }
+}
+
 #menu-bar a {
   display: inline-block;
   padding: 1em 2em;

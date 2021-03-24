@@ -1,3 +1,5 @@
+<div align="center"><img width="200px" src="website/img/logo.svg" /></div>
+
 # Wiki 2.0
 
 Everything ever written, everything that will be written, exists in this wiki. With its 9×10<sup>11 589</sup> pages, the wiki is complete, all you need to do is find the right page...

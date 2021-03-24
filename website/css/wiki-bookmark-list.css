@@ -22,12 +22,13 @@ ul#bookmarks li {
 
 ul#bookmarks li:before {
   content: "";
-  border-left: 5px solid var(--bookmark-color-bookmarked);
-  border-right: 5px solid var(--bookmark-color-bookmarked);
-  border-bottom: 5px solid var(--element-selection-background);
+  border-left: 6px solid var(--bookmark-color-bookmarked);
+  border-right: 6px solid var(--bookmark-color-bookmarked);
+  border-bottom: 6px solid var(--element-selection-background);
   background-color: var(--bookmark-color-bookmarked);
-  margin-right: var(--element-border-radius);
-  opacity: 0.7;
+  margin-right: 0.75rem;
+  position: relative;
+  top: -3px;
 }
 
 ul#bookmarks li:not(:last-child) {
