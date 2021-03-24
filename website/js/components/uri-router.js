@@ -2,7 +2,7 @@ class Router extends HTMLElement {
   constructor() {
     super();
 
-    this.setAttribute("aria-hidden", "true");
+    this.hidden = true;
 
     this.path = this.getAttribute("path");
     this.routes = document.querySelectorAll("uri-router");
@@ -21,12 +21,12 @@ class Router extends HTMLElement {
       const otherPath = route.getAttribute("path");
 
       if (this.path != otherPath && otherPath.startsWith(this.path) && currentPath.startsWith(otherPath)) {
-        this.setAttribute("aria-hidden", "true");
+        this.hidden = true;
         return;
       }
     }
 
-    this.setAttribute("aria-hidden", "false");
+    this.hidden = false;
     this.appendChild(this.querySelector("template").content.cloneNode(true));
   }
 }

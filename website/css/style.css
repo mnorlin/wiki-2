@@ -46,14 +46,8 @@ select:focus-visible {
   outline-offset: 0.3em;
 }
 
-uri-router {
-  flex: 1;
-  display: block;
+main {
   padding: 0 1em;
-}
-
-uri-router[aria-hidden="true"] {
-  display: none;
 }
 
 mark,
