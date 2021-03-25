@@ -3,7 +3,7 @@
   --transition-time-medium: 0.5s;
   --transition-time-long: 0.5s;
 
-  --content-font: serif;
+  --content-font: Helvetica, sans-serif;
 
   --bg-color: rgb(245, 245, 245) !important;
   --text-color: rgb(50, 50, 50);
@@ -19,7 +19,7 @@
 
   --element-background: white;
   --element-text-color: rgba(0, 0, 0, 0.6);
-  --element-border-radius: 0.75em;
+  --element-border-radius: 0.5em;
   --element-border: 1px solid rgba(0, 0, 0, 0.2);
   --element-border-hover: 1px solid rgba(0, 0, 0, 0.5);
   --element-border-active: 1px solid rgba(0, 0, 0, 0.7);

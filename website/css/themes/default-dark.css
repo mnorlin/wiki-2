@@ -3,7 +3,7 @@
   --transition-time-medium: 0.5s;
   --transition-time-long: 0.5s;
 
-  --content-font: serif;
+  --content-font: Helvetica, sans-serif;
 
   --bg-color: rgb(39, 43, 48) !important;
   --text-color: rgb(204, 204, 204);

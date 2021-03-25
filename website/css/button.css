@@ -4,6 +4,7 @@ button {
   display: inline-block;
   text-decoration: none !important;
   padding: 1em 2em;
+  font-size: 1em;
   color: var(--element-text-color);
   background: var(--element-background);
   border-radius: var(--element-border-radius);
