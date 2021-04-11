@@ -1,8 +1,8 @@
 #browse {
   display: grid;
   justify-content: center;
-  row-gap: 3em;
-  column-gap: 3em;
+  row-gap: calc(2 * var(--spacing, 1rem));
+  column-gap: calc(2 * var(--spacing, 1rem));
   grid-template-columns: min-content 1fr min-content;
   max-width: 800px;
   margin: 0 auto;
@@ -15,42 +15,67 @@
   flex-direction: column;
   grid-column: 1 / span 3;
   overflow-wrap: break-word;
-  font-size: 12px;
+  font-size: 0.8rem;
   border: var(--page-border, 1px solid black);
-  border-radius: var(--element-border-radius);
-  box-shadow: var(--element-shadow);
-  background: var(--element-background);
+  border-radius: var(--page-border-radius, var(--border-radius));
+  box-shadow: var(--page-shadow);
+  background: var(--page-bg);
   max-width: 100%;
 }
 
 #browse wiki-content {
-  margin: 0 4em;
+  position: relative;
+  margin: 0 calc(3 * var(--spacing, 1rem));
+  padding: 1em 0;
   display: block;
-  flex: 1 1 25em;
+  flex-grow: 1;
   font-family: var(--content-font, monospace);
   white-space: pre-wrap;
   opacity: 0;
 }
 
-#browse button {
-  padding: 1em 0.5em;
-  border-radius: calc(var(--element-border-radius) / 2);
-  font-size: 2em;
+.page-turner button {
+  padding: 0;
+  line-height: 0.75;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-size: 6rem;
   font-family: "Arial";
+  opacity: 1;
 }
 
-#browse .page-turner {
-  margin: calc((var(--progress-progress-height, 0px) + var(--progress-track-padding, 0px)) / 2) 0 1em 0;
+.page-turner button:disabled {
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--transition-time-medium);
 }
 
-#browse #page-number {
+#page-number-wrapper {
+  position: relative;
+}
+
+#page-number-wrapper::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1em;
+  right: 0;
+  left: 0;
+  height: 1em;
+  background: linear-gradient(rgba(var(--page-bg-raw), 0.001), var(--page-bg));
+  z-index: 1;
+}
+
+#page-number {
   text-overflow: ellipsis;
   display: block;
   text-align: center;
   width: 70%;
-  margin: 1em auto 0.8em auto;
+  margin: 0.5em auto 0.8em auto;
   padding-bottom: 0.2em;
-  font-size: 16px;
+  font-size: 1.1rem;
   background-color: transparent;
   border: 1px solid transparent;
   transition: border-color var(--transition-time-medium);
@@ -58,18 +83,18 @@
   border-radius: 0;
 }
 
-#browse #page-number:hover,
-#browse #page-number:focus {
+#page-number:hover,
+#page-number:focus {
   transition: border-color var(--transition-time-medium);
   border-bottom: 1px solid var(--page-number-color, black);
 }
 
-#browse #range-wrapper {
+#range-wrapper {
+  margin-top: 0.25em;
   text-align: center;
-  margin-top: 1em;
   grid-column: 2;
 }
 
-#browse #progress-percentage {
-  margin-bottom: 1em;
+#progress-percentage {
+  margin-bottom: var(--spacing, 1rem);
 }

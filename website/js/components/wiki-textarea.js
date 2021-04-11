@@ -19,8 +19,12 @@ class WikiTextArea extends HTMLTextAreaElement {
   }
 
   updateHeight() {
+    // We assume "box-sizing: border-box;"
     this.style.height = "1px";
-    this.style.height = `${this.scrollHeight}px`;
+    const scrollHeight = `${this.scrollHeight}px`;
+    const borderTopWidth = window.getComputedStyle(this).getPropertyValue("border-top-width");
+    const borderBottomWidth = window.getComputedStyle(this).getPropertyValue("border-bottom-width");
+    this.style.height = `calc(${scrollHeight} + ${borderTopWidth} + ${borderBottomWidth})`;
   }
 }
 

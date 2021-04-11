@@ -47,6 +47,12 @@ function generateResult(content, searchTerm, pageNumber) {
 
   result.innerHTML = `
     <div>
+      <a
+        class="result-link"
+        href="/page/${pageNumber}?highlight=${encodeURIComponent(highlight)}"
+      >
+        ${content === searchTerm ? "Exact match" : "Nested match"}
+      </a>
       <nav class="result-breadcrumb">
         <a href="/">Wiki 2.0</a> ›
         <a href="/page">Page</a> ›
@@ -54,17 +60,13 @@ function generateResult(content, searchTerm, pageNumber) {
           ${toPercent(pageNumber)} %
         </a>
       </nav>
-      <a
-        class="result-link"
-        href="/page/${pageNumber}?highlight=${encodeURIComponent(highlight)}"
-      >
-        ${content === searchTerm ? "Exact match" : "Nested match"}
-      </a>
       <wiki-content class="result-snippet" highlight="${highlight}" trim="300">${content}</wiki-content>
     </div>
     
     <div aria-hidden="true">
-      <wiki-content class="content" highlight="${highlight}">${content}</wiki-content>
+      <div class="result-page">
+        <wiki-content highlight="${highlight}">${content}</wiki-content>
+      </div>
       <div class="track">
         <div
           class="progress"

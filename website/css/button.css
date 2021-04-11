@@ -1,40 +1,33 @@
 button {
-  user-select: none;
-  text-align: center;
-  display: inline-block;
-  text-decoration: none !important;
-  padding: 1em 2em;
-  font-size: 1em;
-  color: var(--element-text-color);
-  background: var(--element-background);
-  border-radius: var(--element-border-radius);
-  border: var(--element-border, 1px solid black);
-  box-shadow: var(--element-shadow);
-  transition: color var(--transition-time-medium), border var(--transition-time-medium),
-    text-shadow var(--transition-time-short), box-shadow var(--transition-time-short),
-    opacity var(--transition-time-medium);
+  cursor: pointer;
+  padding: calc(0.5 * var(--spacing, 1rem)) var(--spacing, 1rem);
+  font-size: 1rem;
+  color: var(--button-color);
+  background: var(--button-bg);
+  border-radius: var(--border-radius);
+  border: var(--button-border, 1px solid black);
+  box-shadow: var(--button-shadow);
+  transition: background var(--transition-time-medium), color var(--transition-time-medium),
+    border var(--transition-time-medium), text-shadow var(--transition-time-short),
+    box-shadow var(--transition-time-short), opacity var(--transition-time-medium);
 }
 
 button:hover {
-  color: var(--text-color-hover);
-  border: var(--element-border-hover, 1px solid black);
-  text-shadow: var(--button-text-shadow-hover);
-  box-shadow: var(--element-shadow-hover);
-  transition: color var(--transition-time-medium), border var(--transition-time-medium),
-    text-shadow var(--transition-time-long), box-shadow var(--transition-time-long);
+  color: var(--button-hover-color, var(--button-color));
+  background: var(--button-hover-bg, var(--button-bg));
+  border: var(--button-hover-border, var(--button-border, 1px solid black));
+  box-shadow: var(--button-hover-shadow);
+  transition: background var(--transition-time-medium), color var(--transition-time-medium),
+    border var(--transition-time-medium), text-shadow var(--transition-time-long),
+    box-shadow var(--transition-time-long);
 }
 
 button:active {
-  color: var(--text-color-active);
-  border: var(--element-border-active, 1px solid black);
-  text-shadow: var(--text-shadow-active);
-  box-shadow: var(--element-shadow-active);
-  transition: color var(--transition-time-short), border var(--transition-time-short),
-    text-shadow var(--transition-time-medium), box-shadow var(--transition-time-medium);
-}
-
-button:disabled {
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--transition-time-medium);
+  color: var(--button-active-color, var(--button-hover-color, var(--button-color)));
+  background: var(--button-active-bg, var(--button-hover-bg, var(--button-bg)));
+  border: var(--button-active-border, var(--button-hover-border, var(--button-border, 1px solid black)));
+  box-shadow: var(--button-active-shadow, var(--button-hover-shadow));
+  transition: background var(--transition-time-medium), color var(--transition-time-short),
+    border var(--transition-time-short), text-shadow var(--transition-time-medium),
+    box-shadow var(--transition-time-medium);
 }

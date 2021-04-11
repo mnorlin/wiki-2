@@ -1,5 +1,17 @@
 wiki-bookmark {
-  flex: 0 0 3em;
+  position: relative;
+}
+
+wiki-bookmark::after {
+  content: "";
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: -1em;
+  left: 0;
+  height: 1em;
+  background: linear-gradient(var(--page-bg), rgba(var(--page-bg-raw), 0.001));
+  z-index: 1;
 }
 
 wiki-bookmark label > * {
@@ -18,29 +30,31 @@ wiki-bookmark input[type="checkbox"] + label {
   position: absolute;
   top: 0;
   right: 0;
-  clip: rect(0, 2em, 3em, 0);
+  clip: rect(-1px, 2em, 4em, 0);
 }
 
 wiki-bookmark input[type="checkbox"] + label:before {
   content: "";
-  border-left: 1em solid var(--bookmark-color, silver);
-  border-right: 1em solid var(--bookmark-color, silver);
-  border-bottom: 1em solid var(--element-background, var(--bg-color, white));
-  background-color: var(--bookmark-color, silver);
+  display: inline-block;
+  height: 1.83em;
+  border-left: 1em solid var(--bookmark, silver);
+  border-right: 1em solid var(--bookmark, silver);
+  border-bottom: 1em solid var(--page-bg, white);
+  background-color: var(--bookmark, silver);
   transition: border-top-color var(--transition-time-medium), border-right-color var(--transition-time-medium),
     border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
 }
 
 wiki-bookmark input[type="checkbox"]:checked + label:before {
-  border-right-color: var(--bookmark-color-bookmarked, black);
-  border-left-color: var(--bookmark-color-bookmarked, black);
-  background-color: var(--bookmark-color-bookmarked, black);
+  border-right-color: var(--bookmark-bookmarked, black);
+  border-left-color: var(--bookmark-bookmarked, black);
+  background-color: var(--bookmark-bookmarked, black);
   transition: border-top-color var(--transition-time-medium), border-right-color var(--transition-time-medium),
     border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
 }
 
 wiki-bookmark input[type="checkbox"]:focus-visible + label:before {
-  outline: 2px solid var(--outline-color);
+  outline: 2px solid var(--outline-color, black);
 }
 
 wiki-bookmark input[type="checkbox"]:focus-visible + label {
@@ -52,9 +66,9 @@ wiki-bookmark input[type="checkbox"] ~ input {
   box-sizing: border-box;
   display: block;
   text-align: center;
-  margin: 1.5em 15% 1.2em 15%;
+  margin: 1.5rem auto 0rem auto;
   width: 70%;
-  font-size: 16px;
+  font-size: 1.1rem;
   padding-bottom: 0.2em;
   background-color: transparent;
   border: 1px solid transparent;

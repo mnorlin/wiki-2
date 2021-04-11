@@ -1,23 +1,23 @@
 wiki-range::part(track),
 #search-results .track {
-  width: calc(100% - 2 * var(--progress-track-padding, 0px));
-  border-radius: var(--element-border-radius, 1em);
+  width: calc(100% - 2 * var(--progress-track-padding, 3px) - 2px);
+  border-radius: calc(var(--progress-progress-height) + var(--progress-track-padding));
   background-color: var(--bg-color);
-  border: var(--progress-track-border, none);
-  box-shadow: var(--progress-track-shadow, 0 0 0 1px rgba(127, 127, 127, 0.5));
-  padding: var(--progress-track-padding);
+  border: var(--progress-track-border, 1px solid black);
+  box-shadow: var(--progress-track-shadow);
+  padding: var(--progress-track-padding, 3px);
 }
 
 wiki-range::part(progress),
 #search-results .track .progress {
-  background: var(--progress-progress-background, rgb(47, 117, 246));
-  height: var(--progress-progress-height, 0.5em);
-  border-radius: var(--element-border-radius, 1em);
+  background: var(--progress-progress-bg, black);
+  height: var(--progress-progress-height, 5px);
+  border-radius: var(--progress-progress-height);
   box-shadow: var(--progress-progress-shadow, none);
 }
 
 wiki-range::part(thumb) {
-  background-color: var(--progress-thumb-background, rgb(47, 117, 246));
+  background-color: var(--progress-thumb-bg, transparent);
 }
 
 wiki-range::part(track) {
@@ -30,10 +30,6 @@ wiki-range::part(track):not(:active):hover {
 
 wiki-range::part(progress) {
   filter: none !important;
-}
-
-#search-results .track {
-  font-size: 0.5em;
 }
 
 #search-results .progress {

@@ -8,18 +8,15 @@
 @import url("/css/browse.css");
 @import url("/css/search.css");
 
-.theme-load {
-  --transition-time-short: 0s;
-  --transition-time-medium: 0s;
-  --transition-time-long: 2s;
+html {
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+  font-size: 14px;
 }
 
 body {
   background-color: var(--bg-color, white);
   margin: 0;
-  font-family: Helvetica, sans-serif;
-  font-weight: 100;
-  font-size: 14px;
   color: var(--text-color, black);
   transition: background-color var(--transition-time-short);
   min-height: 100vh;
@@ -54,7 +51,7 @@ a:focus-visible,
 input:not([type="text"]):focus-visible,
 button:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--outline-color);
+  outline: 2px solid var(--outline-color, black);
   outline-offset: 0.3em;
 }
 
@@ -64,14 +61,14 @@ main {
 
 mark,
 *::selection {
-  background-color: var(--outline-color);
+  background-color: var(--outline-color, black);
   font-weight: bold;
-  color: var(--outline-text);
+  color: var(--outline-text, white);
 }
 
 @media only screen and (min-width: 850px) and (min-height: 600px) {
   :root {
-    --book-height: calc(100vh - 17em);
+    --book-height: calc(100vh - 12 * var(--spacing));
     --book-aspect-ratio: 1.4142;
   }
 
@@ -90,8 +87,8 @@ mark,
     width: calc(var(--book-height) * var(--book-aspect-ratio));
     grid-column: 2;
     grid-row: 1;
-    max-width: calc(100vw - 6 * 3em);
-    max-height: calc((100vw - 6 * 3em) / var(--book-aspect-ratio));
+    max-width: calc(100vw - 18 * var(--spacing));
+    max-height: calc((100vw - 18 * var(--spacing)) / var(--book-aspect-ratio));
   }
 
   #browse > .page-turner {
@@ -104,10 +101,16 @@ mark,
   }
 
   #browse #range-wrapper {
+    margin-top: 0;
     grid-row: 2;
   }
 
   wiki-bookmark input[type="checkbox"] ~ input {
-    margin: 1em 15% 0.6em 15%;
+    margin: 1em auto 0em auto;
+  }
+
+  .result-page {
+    height: 200px;
+    width: calc(200px * var(--book-aspect-ratio));
   }
 }
