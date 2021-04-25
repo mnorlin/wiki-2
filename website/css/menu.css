@@ -1,55 +1,33 @@
 #menu-bar {
   display: flex;
-  justify-content: center;
-  margin-bottom: calc(2 * var(--spacing, 1rem));
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   background-color: var(--menu-background, lightgray);
-  box-shadow: var(--menu-shadow);
   color: var(--menu-color, darkslategray);
-  transition: background-color var(--transition-time-short);
 }
 
 #menu-bar #logo {
-  padding: 0 !important;
-  position: absolute;
-  left: var(--spacing, 1rem);
-  top: calc(0.75 * var(--spacing, 1rem));
-  display: flex;
-  align-items: center;
-}
-
-#logo svg {
-  display: inline-block;
-  width: calc(2 * var(--spacing, 1rem));
-  margin-right: calc(0.625 * var(--spacing, 1rem));
-}
-
-@media (max-width: 600px) {
-  #menu-bar #logo {
-    display: none;
-  }
+  width: 2.5rem;
 }
 
 #menu-bar a {
+  width: 1.5rem;
   text-align: center;
-  display: inline-block;
+  display: block;
   padding: calc(1.25 * var(--spacing, 1rem));
-  width: 11ch;
   text-decoration: none;
   color: var(--menu-color);
-  transition: color var(--transition-time-medium), text-shadow var(--transition-time-medium);
+  transition: color var(--transition-time-short);
 }
 
 #menu-bar a:hover {
   text-decoration: none;
-  transition: color var(--transition-time-medium), text-shadow var(--transition-time-medium);
   color: var(--menu-color-hover, black);
-  text-shadow: var(--text-shadow-hover);
 }
 
 #menu-bar a.active,
 #menu-bar a:active {
   text-decoration: none;
-  transition: color var(--transition-time-medium), text-shadow var(--transition-time-medium);
   color: var(--menu-color-active, var(--menu-color-hover, black));
-  text-shadow: var(--text-shadow-hover);
 }

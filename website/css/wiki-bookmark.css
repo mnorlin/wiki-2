@@ -1,5 +1,6 @@
 wiki-bookmark {
   position: relative;
+  font-size: 0.8rem;
 }
 
 wiki-bookmark::after {
@@ -30,10 +31,9 @@ wiki-bookmark input[type="checkbox"] + label {
   position: absolute;
   top: 0;
   right: 0;
-  clip: rect(-1px, 2em, 4em, 0);
 }
 
-wiki-bookmark input[type="checkbox"] + label:before {
+wiki-bookmark input[type="checkbox"] + label:after {
   content: "";
   display: inline-block;
   height: 1.83em;
@@ -45,7 +45,7 @@ wiki-bookmark input[type="checkbox"] + label:before {
     border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
 }
 
-wiki-bookmark input[type="checkbox"]:checked + label:before {
+wiki-bookmark input[type="checkbox"]:checked + label:after {
   border-right-color: var(--bookmark-bookmarked, black);
   border-left-color: var(--bookmark-bookmarked, black);
   background-color: var(--bookmark-bookmarked, black);
@@ -53,7 +53,7 @@ wiki-bookmark input[type="checkbox"]:checked + label:before {
     border-left-color var(--transition-time-medium), background-color var(--transition-time-medium);
 }
 
-wiki-bookmark input[type="checkbox"]:focus-visible + label:before {
+wiki-bookmark input[type="checkbox"]:focus-visible + label:after {
   outline: 2px solid var(--outline-color, black);
 }
 

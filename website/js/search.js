@@ -60,12 +60,12 @@ function generateResult(content, searchTerm, pageNumber) {
           ${toPercent(pageNumber)} %
         </a>
       </nav>
-      <wiki-content class="result-snippet" highlight="${highlight}" trim="300">${content}</wiki-content>
+      <wiki-text class="result-snippet" highlight="${highlight}" trim="300">${content}</wiki-text>
     </div>
     
     <div aria-hidden="true">
       <div class="result-page">
-        <wiki-content highlight="${highlight}">${content}</wiki-content>
+        <wiki-text highlight="${highlight}">${content}</wiki-text>
       </div>
       <div class="track">
         <div

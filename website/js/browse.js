@@ -2,29 +2,117 @@ import lcgParams from "./config/lcg-params.js";
 import { toPercent, fromPercent } from "/js/utils/calculations.js";
 import getTransitionTime from "/js/utils/css.js";
 
+const templateImage = '<div class="wiki-image-wrapper"><wiki-image></wiki-image></div>';
+
+const templateText = `
+<div class="wiki-text-wrapper">
+  <wiki-bookmark default-title="Untitled bookmark">
+    <input id="bookmark-checkbox" type="checkbox" />
+    <label aria-label="Bookmarked" for="bookmark-checkbox"></label>
+    <input aria-label="Bookmark title" type="text" />
+  </wiki-bookmark>
+  
+  <wiki-text role="article"></wiki-text>
+  
+  <div class="page-number-wrapper">
+    <input class="page-number" aria-label="Page number" type="text" />
+  </div>
+</div>`;
+
+const templatePage = `
+<div class="page" style="z-index: 0;">
+  <div class="page-front"></div>
+  <div class="page-back"></div>
+</div>`;
+
 const worker = new Worker("/js/content-generator.js", {
   type: "module",
 });
 
-let firstView = true;
+//worker.postMessage(currentPage() - 1n);
+worker.postMessage(currentPage());
+//worker.postMessage(currentPage() + 1n);
 
 worker.onmessage = (e) => {
-  setTimeout(() => {
-    document.querySelectorAll(".transition").forEach((n) => {
-      n.remove();
-    });
-    const hlight = decodeURIComponent(new URLSearchParams(window.location.search).get("highlight") || "");
-    document.querySelector("wiki-content").setAttribute("highlight", hlight || "");
-    document.querySelector("wiki-content").content = e.data.content;
-    document.querySelector("wiki-bookmark").update();
-    document.querySelector("wiki-bookmark").bookmarked || e.data.pageNumber === 0n
-      ? document.querySelector("wiki-content").setAttribute("unsafe", "")
-      : document.querySelector("wiki-content").removeAttribute("unsafe");
-    document.querySelector("wiki-content").classList.remove("fade-out");
-    document.querySelector("wiki-content").classList.add("fade-in");
-    if (!firstView) document.querySelector(".page-turner").scrollIntoView({ block: "nearest" });
-  }, getTransitionTime("long"));
+  insertPage(e.data);
 };
+
+function insertPage(data, flipped = false) {
+  const page = document.createElement("div");
+  page.classList.add("page");
+
+  const front = createFrontPage(data);
+  const back = createBackPage(data);
+
+  if (flipped) {
+    page.classList.add("flipped");
+  }
+
+  page.appendChild(back);
+  page.appendChild(front);
+
+  document.querySelector(".cover").prepend(page);
+}
+
+function createBackPage({ image }) {
+  const back = document.createElement("div");
+  back.classList.add("page-back");
+  back.innerHTML = templateImage;
+  back.querySelector(`wiki-image`).image = image;
+  return back;
+}
+
+function createFrontPage({ pageNumber, text }) {
+  const hlight = decodeURIComponent(new URLSearchParams(window.location.search).get("highlight") || "");
+
+  const front = document.createElement("div");
+  front.classList.add("page-front");
+
+  front.innerHTML = templateText;
+
+  front.querySelector(`wiki-text`).setAttribute("highlight", hlight || "");
+  front.querySelector(`wiki-text`).content = text;
+  front.querySelector(`wiki-bookmark`).update();
+
+  front.querySelector(`wiki-bookmark`).bookmarked || pageNumber === 0n
+    ? front.querySelector(`wiki-text`).setAttribute("unsafe", "")
+    : front.querySelector(`wiki-text`).removeAttribute("unsafe");
+
+  return front;
+}
+
+document.querySelectorAll(".page-turner button").forEach((b) => {
+  b.addEventListener("click", (e) => {
+    const modifier = parseInt(e.target.dataset.modifier);
+    turnPage(currentPage() + BigInt(modifier), modifier);
+  });
+});
+
+function turnPage(pageNumber, modifier) {
+  history.pushState({ pageNumber }, null, `/page/${pageNumber}`);
+
+  const leftPage = document.querySelector(".flipped");
+  const rightPages = document.querySelectorAll(".page:not(.flipped)");
+
+  const flipping = modifier < 0 ? leftPage : rightPages[rightPages.length - 1];
+
+  flipping.style.zIndex = 1;
+  flipping.classList.add("flipping");
+
+  setTimeout(() => {
+    for (const flipped of document.querySelectorAll(".flipped:not(.flipping)")) {
+      const newZIndex = flipped.style.zIndex - modifier;
+      flipped.style.zIndex = newZIndex > 0 ? 0 : newZIndex;
+    }
+    flipping.style.zIndex = 0;
+    flipping.classList.remove("flipping");
+    modifier < 0 ? flipping.classList.remove("flipped") : flipping.classList.add("flipped");
+  }, 1000);
+
+  worker.postMessage(pageNumber);
+}
+/*
+
 
 updatePage(currentPage(), true);
 
@@ -52,8 +140,8 @@ function updatePage(pageNumber, firstLoad = false, updateHistory = true) {
   pageNumber = validPageNumber(pageNumber);
 
   if (!firstLoad) {
-    document.querySelector("wiki-content").classList.remove("fade-in");
-    document.querySelector("wiki-content").classList.add("fade-out");
+    document.querySelector("wiki-text").classList.remove("fade-in");
+    document.querySelector("wiki-text").classList.add("fade-out");
   }
 
   if (firstLoad && updateHistory) {
@@ -65,7 +153,7 @@ function updatePage(pageNumber, firstLoad = false, updateHistory = true) {
 
   const transition = document.createElement("div");
   transition.classList.add("transition");
-  document.querySelector(".page").appendChild(transition);
+  document.querySelector(".page-right").appendChild(transition);
   worker.postMessage(pageNumber);
 
   document.querySelector("#page-number").value = pageNumber;
@@ -75,7 +163,7 @@ function updatePage(pageNumber, firstLoad = false, updateHistory = true) {
     b.disabled = pageNumber + BigInt(b.dataset.modifier) < 0 || pageNumber + BigInt(b.dataset.modifier) > lcgParams.m;
   });
 }
-
+*/
 function currentPage() {
   return validPageNumber(window.location.pathname.split("/page/").pop());
 }

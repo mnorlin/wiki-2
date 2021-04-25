@@ -106,7 +106,7 @@
   margin-bottom: var(--spacing);
 }
 
-#search-results .result-page wiki-content {
+#search-results .result-page wiki-text {
   display: block;
   padding: calc(1.5 * var(--spacing)) var(--spacing);
 }

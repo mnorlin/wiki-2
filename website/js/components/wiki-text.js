@@ -1,6 +1,6 @@
 import { slice, length, base64ToString } from "/js/utils/strings.js";
 
-class WikiContent extends HTMLElement {
+class WikiText extends HTMLElement {
   static get observedAttributes() {
     return ["unsafe", "highlight", "trim"];
   }
@@ -88,4 +88,4 @@ function sanitizeHTML(str) {
   return temp.innerHTML;
 }
 
-customElements.define("wiki-content", WikiContent);
+customElements.define("wiki-text", WikiText);

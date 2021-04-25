@@ -11,10 +11,10 @@ class Router extends HTMLElement {
       return;
     }
 
-    this.updateView();
+    this.update();
   }
 
-  updateView() {
+  update() {
     const currentPath = window.location.pathname;
 
     for (let route of this.routes) {

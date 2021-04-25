@@ -8,30 +8,40 @@
   margin: 0 auto;
 }
 
-#browse .page {
-  grid-row: 1;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  grid-column: 1 / span 3;
-  overflow-wrap: break-word;
-  font-size: 0.8rem;
-  border: var(--page-border, 1px solid black);
+#browse .cover {
+  background-color: var(--menu-background, lightgray);
   border-radius: var(--page-border-radius, var(--border-radius));
-  box-shadow: var(--page-shadow);
-  background: var(--page-bg);
-  max-width: 100%;
+  grid-row: 1;
+  grid-column: 1 / span 3;
+  perspective: 150vw;
+  perspective-origin: left center;
+  padding: var(--spacing);
 }
 
-#browse wiki-content {
-  position: relative;
-  margin: 0 calc(3 * var(--spacing, 1rem));
-  padding: 1em 0;
-  display: block;
+#browse .wiki-image-wrapper {
   flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#browse .wiki-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  flex-grow: 1;
+  margin: 0 calc(3 * var(--spacing, 1rem));
+}
+
+#browse wiki-text {
+  display: block;
   font-family: var(--content-font, monospace);
+  font-size: 0.8rem;
+  padding: 0.5em 0;
+  flex-basis: 0;
+  flex-grow: 1;
   white-space: pre-wrap;
-  opacity: 0;
 }
 
 .page-turner button {
@@ -52,11 +62,11 @@
   transition: opacity var(--transition-time-medium);
 }
 
-#page-number-wrapper {
+.page-number-wrapper {
   position: relative;
 }
 
-#page-number-wrapper::before {
+.page-number-wrapper::before {
   content: "";
   display: block;
   position: absolute;
@@ -68,7 +78,7 @@
   z-index: 1;
 }
 
-#page-number {
+.page-number {
   text-overflow: ellipsis;
   display: block;
   text-align: center;
@@ -83,8 +93,8 @@
   border-radius: 0;
 }
 
-#page-number:hover,
-#page-number:focus {
+.page-number:hover,
+.page-number:focus {
   transition: border-color var(--transition-time-medium);
   border-bottom: 1px solid var(--page-number-color, black);
 }

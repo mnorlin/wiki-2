@@ -12,6 +12,10 @@
   animation-fill-mode: forwards;
 }
 
+.transition {
+  position: absolute; // TODO: used?
+}
+
 @keyframes fadein {
   from {
     opacity: 0;

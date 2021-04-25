@@ -1,0 +1,47 @@
+.page-front,
+.page-back {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+}
+
+.page-back {
+  transform: rotateY(-180deg);
+  background: linear-gradient(to left, #888, var(--page-bg) 2%);
+}
+
+.page-front {
+  background: linear-gradient(to right, #888, var(--page-bg) 2%);
+}
+
+.page.flipping {
+  transform: rotateY(-180deg);
+  transition: 1s;
+}
+
+.page {
+  position: absolute;
+  grid-column: 2;
+  transform-origin: 0 0;
+  transform-style: preserve-3d;
+  top: var(--spacing);
+  right: var(--spacing);
+  bottom: var(--spacing);
+  left: 50%;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+.page.flipped.flipping {
+  transform: rotateY(0deg);
+  transition: 1s;
+  transform-style: preserve-3d;
+}

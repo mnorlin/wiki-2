@@ -28,7 +28,7 @@
 
   --menu-color: var(--gray-4);
   --menu-color-hover: var(--gray-3);
-  --menu-color-active: var(--gray-1);
+  --menu-color-active: var(--primary);
   --menu-background: var(--gray-6);
 
   --page-title-color: var(--gray-7);
