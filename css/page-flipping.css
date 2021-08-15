@@ -1,0 +1,130 @@
+.page-front,
+.page-back {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
+  opacity: 1;
+}
+/*
+.flipping + .page .page-back {
+  opacity: 0;
+}
+*/
+.page.shadow :is(.page-front, .page-back) {
+  opacity: 0;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.3s;
+}
+
+.page-back {
+  transform: rotateY(-180deg);
+  background: linear-gradient(to left, #aaa, var(--page-bg) 3%);
+  transition: 0.45s opacity ease-out;
+  opacity: 1;
+}
+
+.page-front {
+  background: linear-gradient(to right, #aaa, var(--page-bg) 3%);
+  transition: 0.45s opacity ease-out;
+  opacity: 1;
+}
+
+.page-back {
+  transform: rotateY(-180deg);
+  background: linear-gradient(to left, #aaa, var(--page-bg) 3%);
+  transition: 0.45s opacity ease-out;
+  opacity: 1;
+}
+
+.page[data-page="0"] .page-front {
+  background: linear-gradient(to right, #888, var(--page-bg) 1px);
+}
+.page[data-page="-1"] .page-back {
+  background: var(--page-bg);
+}
+
+/*
+.page[data-page="0"] .page-front {
+  background: linear-gradient(to right, #888, var(--page-bg) 1%);
+}
+
+.page[data-page="0"] .page-back {
+  background: linear-gradient(to left, #888, var(--page-bg) 1%);
+}
+*/
+.page.flipping {
+  transform: rotateY(-180deg);
+  transition: 1.5s;
+}
+.cover .pages-wrapper {
+  opacity: 1;
+  transition: 500ms opacity;
+}
+.cover.loading .pages-wrapper {
+  opacity: 0;
+}
+
+/*
+.cover .page-front:not(.flipping),
+.cover .page-back:not(.flipping) {
+  opacity: 1;
+}
+
+
+.cover.loading {
+  animation-name: grow;
+  animation-duration: 1s;
+  animation-direction: reverse;
+}
+
+.cover.loading-done {
+  animation-name: grow;
+  animation-duration: 1s;
+}
+@keyframes grow {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+*/
+/*
+.page:not(.flipped).flipping + .page .page-back {
+  opacity: 0;
+}
+
+.page.flipped:nth-of-type(1) .page-back {
+  opacity: 0;
+}
+*/
+.page {
+  position: absolute;
+  grid-column: 2;
+  transform-origin: 0 0;
+  transform-style: preserve-3d;
+  top: var(--spacing);
+  right: var(--spacing);
+  bottom: var(--spacing);
+  left: 50%;
+  background: #888;
+}
+
+.page.flipped {
+  transform: rotateY(-180deg);
+}
+
+.page.flipped.flipping {
+  transform: rotateY(0deg);
+  transition: 1.5s;
+  transform-style: preserve-3d;
+}

@@ -5,10 +5,10 @@
 }
 
 #search form {
-  max-width: 780px;
   position: relative;
   margin: 0 auto;
-  max-width: 35rem;
+  width: 30rem;
+  max-width: 30rem;
   margin-bottom: calc(5 * var(--spacing));
 }
 

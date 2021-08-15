@@ -9,6 +9,7 @@ ul#bookmarks {
   color: var(--box-color);
   display: block;
   margin: 0 auto;
+  width: 30rem;
   max-width: 30em;
 }
 

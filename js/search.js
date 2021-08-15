@@ -31,7 +31,7 @@ if (currentSearchTerm()) {
 
   for (let i = 0; i < 4; i++) {
     workerGenerate.onmessage = (e) => {
-      workerSearch.postMessage(buildWrappedResult(currentSearchTerm(), e.data.content));
+      workerSearch.postMessage(buildWrappedResult(currentSearchTerm(), e.data.text));
     };
 
     workerGenerate.postMessage(BigInt(Math.floor(Math.random() * Number.MAX_SAFE_INTEGER)));
@@ -49,14 +49,14 @@ function generateResult(content, searchTerm, pageNumber) {
     <div>
       <a
         class="result-link"
-        href="/page/${pageNumber}?highlight=${encodeURIComponent(highlight)}"
+        href="/page?highlight=${encodeURIComponent(highlight)}#${pageNumber}"
       >
         ${content === searchTerm ? "Exact match" : "Nested match"}
       </a>
       <nav class="result-breadcrumb">
         <a href="/">Wiki 2.0</a> ›
         <a href="/page">Page</a> ›
-        <a href="${content === searchTerm ? `/link/${encoded}` : `/page/${pageNumber}`}">
+        <a href="${content === searchTerm ? `/link#${encoded}` : `/page#${pageNumber}`}">
           ${toPercent(pageNumber)} %
         </a>
       </nav>

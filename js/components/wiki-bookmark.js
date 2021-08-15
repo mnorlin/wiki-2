@@ -48,20 +48,19 @@ class WikiBookmark extends HTMLElement {
 
   get bookmarked() {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
-    const bookmark = bookmarks?.find((bookmark) => bookmark.path === window.location.pathname);
+    const bookmark = bookmarks?.find((bookmark) => bookmark.path === this.getPath());
 
     return bookmark ? bookmark?.title || "" : undefined;
   }
 
   set bookmarked(title) {
     const bookmarks =
-      JSON.parse(localStorage.getItem("bookmarks"))?.filter((bookmark) => bookmark.path !== window.location.pathname) ||
-      [];
+      JSON.parse(localStorage.getItem("bookmarks"))?.filter((bookmark) => bookmark.path !== this.getPath()) || [];
 
     if (title !== undefined) {
       bookmarks.push({
         title: title,
-        path: window.location.pathname,
+        path: this.getPath(),
       });
     }
 
@@ -77,6 +76,15 @@ class WikiBookmark extends HTMLElement {
 
     this.checkbox.checked = this.bookmarked !== undefined ? true : false;
     this.bookmarked !== undefined ? this.setAttribute("bookmarked", "") : this.removeAttribute("bookmarked");
+  }
+
+  set hardUrl(path) {
+    this.path = path;
+    this.update();
+  }
+
+  getPath() {
+    return this.path || window.location.pathname + window.location.hash;
   }
 }
 

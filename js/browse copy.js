@@ -1,7 +1,7 @@
 import lcgParams from "./config/lcg-params.js";
 import { toPercent, fromPercent } from "/js/utils/calculations.js";
 import getTransitionTime from "/js/utils/css.js";
-
+import Book from "book.js";
 const templateImage = '<div class="wiki-image-wrapper"><wiki-image></wiki-image></div>';
 
 const templateText = `
@@ -99,6 +99,13 @@ function turnPage(pageNumber, modifier) {
   flipping.style.zIndex = 1;
   flipping.classList.add("flipping");
 
+  if (modifier > 0) {
+    flipping.nextElementSibling?.classList.add("hide");
+  } else {
+    flipping.previousElementSibling?.classList.add("hide");
+    flipping.nextElementSibling?.classList.remove("hide");
+  }
+
   setTimeout(() => {
     for (const flipped of document.querySelectorAll(".flipped:not(.flipping)")) {
       const newZIndex = flipped.style.zIndex - modifier;
@@ -110,6 +117,20 @@ function turnPage(pageNumber, modifier) {
   }, 1000);
 
   worker.postMessage(pageNumber);
+  deletePages();
+}
+
+function deletePages() {
+  const next = document.querySelectorAll(".page:not(.flipped)");
+  const prev = document.querySelectorAll(".page.flipped");
+
+  for (let i = 0; next.length - i > 3; i++) {
+    next.item(i).remove();
+  }
+
+  for (let i = prev.length - 1; i > 3; i--) {
+    prev.item(i).remove();
+  }
 }
 /*
 

@@ -6,9 +6,17 @@ class WikiImage extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" }).innerHTML = "<canvas></canvas>";
     this.canvas = this.shadowRoot.querySelector("canvas");
+
+    // These are to prevent a bug that container background disappear on 0px canvas;
+    this.canvas.height = 200;
+    this.canvas.width = 200;
+    const ctx = this.canvas.getContext("2d");
+    ctx.fillStyle = `rgba(0,0,0,0)`;
+    ctx.fillRect(0, 0, 1, 1);
   }
 
   set image(image) {
+    if (image.length < 1 || image[0].length < 1) return;
     const ctx = this.canvas.getContext("2d");
     this.canvas.height = image.length * scale;
     this.canvas.width = image[0].length * scale;

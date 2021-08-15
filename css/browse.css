@@ -13,8 +13,8 @@
   border-radius: var(--page-border-radius, var(--border-radius));
   grid-row: 1;
   grid-column: 1 / span 3;
-  perspective: 150vw;
-  perspective-origin: left center;
+  perspective: 200vw;
+  perspective-origin: center center;
   padding: var(--spacing);
 }
 
@@ -107,4 +107,26 @@
 
 #progress-percentage {
   margin-bottom: var(--spacing, 1rem);
+}
+
+wiki-range::part(track),
+#search-results .track {
+  width: calc(100% - 2 * var(--progress-track-padding, 3px) - 2px);
+  border-radius: calc(var(--progress-progress-height) + var(--progress-track-padding));
+  background-color: var(--bg-color);
+  border: var(--progress-track-border, 1px solid black);
+  box-shadow: var(--progress-track-shadow);
+  padding: var(--progress-track-padding, 3px);
+}
+
+wiki-range::part(progress),
+#search-results .track .progress {
+  background: var(--progress-progress-bg, black);
+  height: var(--progress-progress-height, 5px);
+  border-radius: var(--progress-progress-height);
+  box-shadow: var(--progress-progress-shadow, none);
+}
+
+wiki-range::part(thumb) {
+  background-color: var(--progress-thumb-bg, transparent);
 }

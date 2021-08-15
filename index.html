@@ -64,38 +64,8 @@
       <uri-router path="/">
         <template>
           <div id="browse">
-            <div class="cover">
-              <div class="page flipped" style="z-index: 0">
-                <div class="page-front"></div>
-                <div class="page-back">
-                  <div class="wiki-image-wrapper">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="128" version="1.1" viewBox="0 0 239 239">
-                      <path
-                        d="M119.5+9C58.4725+8.99998+9+58.4725+9+119.5C9+180.527+58.4725+230+119.5+230C180.527+230+230+180.527+230+119.5C230+58.4725+180.527+9+119.5+9ZM119.5+6.6103e-06C185.498+6.6103e-06+239+53.502+239+119.5C239+185.498+185.498+239+119.5+239C53.502+239+0+185.498+0+119.5C0+53.502+53.502+3.70007e-05+119.5+6.6103e-06Z"
-                        fill="currentcolor"
-                      />
-                      <path
-                        d="M119.625+18C104.537+18+90.277+21.3764+77.4062+27.2813L77.4062+153.219C77.4063+153.763+77.5984+153.958+77.75+154.188L119.625+102.438L161.5+154.188C161.652+153.958+161.844+153.763+161.844+153.219L161.844+27.2813C148.973+21.3764+134.713+18+119.625+18Z"
-                        fill="var(--bookmark-bookmarked)"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-
-              <div class="page" style="z-index: 0">
-                <div class="page-front">
-                  <div class="wiki-text-wrapper" style="text-align: center">
-                    <h1 style="margin: 50% 0 1rem 0; font-size: 3rem">Wiki 2.0</h1>
-                    <p style="font-size: 1rem">
-                      Everything ever written, everything that will be written, exists in this wiki.<br />
-                      With its 9×10<sup>11 589</sup> pages, the wiki is complete, all you need to do is find the right
-                      page...
-                    </p>
-                  </div>
-                </div>
-                <div class="page-back"></div>
-              </div>
+            <div class="cover loading">
+              <div class="pages-wrapper"></div>
             </div>
             <div class="page-turner">
               <button data-modifier="-1" aria-label="Previous page">&lsaquo;</button>
@@ -162,11 +132,11 @@
               type: "module",
             });
             workerSearch.onmessage = (e) => {
-              window.location.href = window.location.origin + "/page/" + e.data.pageNumber;
+              window.location.href = window.location.origin + "/page#" + e.data.pageNumber;
             };
 
             try {
-              const link = base64ToString(window.location.pathname.split("/link/")?.[1] || "");
+              const link = base64ToString(window.location.hash.split(1) || "");
               workerSearch.postMessage(link);
             } catch {
               window.location.href = window.location.origin;

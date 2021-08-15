@@ -12,7 +12,6 @@
 html {
   font-family: Helvetica, sans-serif;
   font-weight: 100;
-  font-size: 14px;
 }
 
 body {
@@ -23,6 +22,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
+  /*overflow-y: hidden; TODO: Why is this needed?*/
 }
 
 h1,
@@ -58,9 +58,8 @@ select:focus-visible {
 
 main {
   display: flex;
-  align-items: center;
   justify-content: center;
-  margin: 0 auto;
+  margin: 3rem auto;
 }
 
 mark,

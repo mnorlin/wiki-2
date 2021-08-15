@@ -6,7 +6,7 @@ import lcgParams from "./config/lcg-params.js";
 
 onmessage = (e) => {
   if (e.data == 0) {
-    postMessage({ pageNumber: 0n, text: "" });
+    postMessage({ pageNumber: 0n, text: "", image: [[]] });
     return;
   }
 

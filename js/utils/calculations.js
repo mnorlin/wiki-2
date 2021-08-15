@@ -7,3 +7,7 @@ export function toPercent(pageNumber) {
 export function fromPercent(percent) {
   return (BigInt(Math.floor(100 * percent)) * lcgParams.m) / 10000n;
 }
+
+export function sortBigInt(a, b) {
+  return a < b ? -1 : a > b ? 1 : 0;
+}

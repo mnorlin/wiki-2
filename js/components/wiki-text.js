@@ -47,7 +47,7 @@ class WikiText extends HTMLElement {
       });
     } else {
       this.innerHTML = trimmed
-        .map((t) => sanitizeHTML(t))
+        .map(sanitizeHTML)
         .join(this.highlight ? `<mark>${sanitizeHTML(this.highlight)}</mark>` : "");
     }
   }
