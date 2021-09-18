@@ -14,6 +14,14 @@
     <link href="/css/themes/default-dark.css" rel="stylesheet" media="(prefers-color-scheme: dark)" />
     <script type="module" src="/js/components/wiki-menu.js"></script>
     <script type="module" src="/js/components/uri-router.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        if (!Boolean(window.chrome)) {
+          document.body.innerText = "Sorry, at the moment Wiki 2.0 only works in Google Chrome";
+        }
+      });
+    </script>
   </head>
 
   <body>

@@ -22,7 +22,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: row;
-  /*overflow-y: hidden; TODO: Why is this needed?*/
+  overflow-x: hidden; /* Prevents strange horizontal overflow as a result of css transform and perspective */
 }
 
 h1,
@@ -58,6 +58,8 @@ select:focus-visible {
 
 main {
   display: flex;
+  flex-shrink: 0;
+  padding: 0 1rem;
   justify-content: center;
   margin: 3rem auto;
 }
@@ -69,51 +71,71 @@ mark,
   color: var(--outline-text, white);
 }
 
-@media only screen and (min-width: 850px) and (min-height: 600px) {
-  :root {
-    --book-height: calc(100vh - 14 * var(--spacing));
-    --book-aspect-ratio: 1.618;
+@media only screen and (max-width: 850px), (max-height: 600px) {
+  uri-router {
+    display: none;
   }
 
-  #browse {
-    grid-template-columns: min-content max-content min-content;
-    row-gap: 2em;
-    max-width: none;
+  main::before {
+    color: black;
+    content: "Wiki 2.0 Only works on screen widths 850px <, and heights 600px <";
   }
 
-  #browse nav.page-turner {
-    grid-row: 1;
+  #menu-bar {
+    display: none;
   }
+}
 
-  #browse .cover {
-    height: var(--book-height);
-    width: calc(var(--book-height) * var(--book-aspect-ratio));
-    grid-column: 2;
-    grid-row: 1;
-    max-width: calc(100vw - 18 * var(--spacing));
-    max-height: calc((100vw - 18 * var(--spacing)) / var(--book-aspect-ratio));
-  }
+/* Below was previously a big screen only media query */
 
-  #browse > .page-turner {
-    display: flex;
-    align-items: center;
-  }
+:root {
+  --book-height: calc(100vh - 14 * var(--spacing));
+  --book-aspect-ratio: 1.618;
+}
 
-  #browse wiki-text {
-    overflow: auto;
-  }
+#browse {
+  grid-template-columns: min-content max-content min-content;
+  row-gap: 2em;
+  max-width: none;
+}
 
-  #browse #range-wrapper {
-    margin-top: 0;
-    grid-row: 2;
-  }
+#browse nav.page-turner {
+  grid-row: 1;
+}
 
-  wiki-bookmark input[type="checkbox"] ~ input {
-    margin: 1em auto 0em auto;
-  }
+#browse .cover {
+  height: var(--book-height);
+  width: calc(var(--book-height) * var(--book-aspect-ratio));
+  grid-column: 2;
+  grid-row: 1;
+  max-width: calc(100vw - 18 * var(--spacing));
+  max-height: calc((100vw - 18 * var(--spacing)) / var(--book-aspect-ratio));
+}
 
-  .result-page {
-    height: 200px;
-    width: calc(200px * var(--book-aspect-ratio));
-  }
+#browse > .page-turner {
+  display: flex;
+  align-items: center;
+}
+
+#browse wiki-text {
+  overflow: auto;
+}
+
+#browse #range-wrapper {
+  margin-top: 0;
+  grid-row: 2;
+}
+
+wiki-bookmark input[type="checkbox"] ~ input {
+  margin: 1em auto 0em auto;
+}
+
+.result-page {
+  margin: 0 auto;
+  height: 275px;
+  width: calc(275px * var(--book-aspect-ratio) / 2);
+}
+
+.track {
+  width: calc(275px * var(--book-aspect-ratio) / 2);
 }

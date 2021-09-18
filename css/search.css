@@ -51,7 +51,7 @@
 
 #search-results .result {
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: 3fr 1fr;
   grid-gap: var(--spacing, 1rem) calc(3 * var(--spacing, 1rem));
   margin: var(--spacing, 1rem) 0;
   padding: var(--spacing, 1rem) 0 calc(2 * var(--spacing, 1rem)) 0;

@@ -109,6 +109,20 @@ function createFrontPage({ pageNumber, text }, isSafe = false) {
     : front.querySelector(`wiki-text`).removeAttribute("unsafe");
 
   front.querySelector(".page-number").value = pageNumber;
+  front.querySelector(".page-number").addEventListener("keypress", (e) => {
+    if (e.keyCode == 13) {
+      const newPage = BigInt(e.target.value);
+      window.location.hash = newPage;
+      document.querySelector(".cover").classList.add("loading");
+      setTimeout(() => {
+        book.reset(newPage);
+        worker.postMessage(newPage);
+      }, 500);
+
+      setPage(newPage);
+    }
+  });
+
   return front;
 }
 
@@ -146,14 +160,7 @@ document.querySelector("wiki-range").addEventListener("input", (e) => {
 
   setPage(newPage);
 });
-/*
-document.getElementById("menu-bar").addEventListener("click", (e) => {
-  e.preventDefault();
-  book.reset(10n);
-  worker.postMessage(10n);
-  setPage(10n);
-});
-*/
+
 function currentPage() {
   return validPageNumber(window.location.hash.slice(1));
 }
@@ -170,57 +177,3 @@ function validPageNumber(page) {
     return 0n;
   }
 }
-
-/*
-
-
-updatePage(currentPage(), true);
-
-document.querySelector("#menu-bar [href='/page']").classList.add("active");
-
-window.addEventListener("popstate", (e) => {
-  updatePage(e.state.pageNumber, false, false);
-});
-
-document.querySelector("#page-number").addEventListener("keypress", (e) => {
-  if (e.keyCode == 13) updatePage(e.target.value);
-});
-
-document.querySelectorAll(".page-turner button").forEach((b) => {
-  b.addEventListener("click", (e) => {
-    updatePage(currentPage() + BigInt(e.target.dataset.modifier));
-  });
-});
-
-document.querySelector("wiki-range").addEventListener("input", (e) => {
-  updatePage(fromPercent(e.target.value));
-});
-
-function updatePage(pageNumber, firstLoad = false, updateHistory = true) {
-  pageNumber = validPageNumber(pageNumber);
-
-  if (!firstLoad) {
-    document.querySelector("wiki-text").classList.remove("fade-in");
-    document.querySelector("wiki-text").classList.add("fade-out");
-  }
-
-  if (firstLoad && updateHistory) {
-    history.replaceState({ pageNumber }, null);
-  } else if (updateHistory) {
-    firstView = false;
-    history.pushState({ pageNumber }, null, `/page/${pageNumber}`);
-  }
-
-  const transition = document.createElement("div");
-  transition.classList.add("transition");
-  document.querySelector(".page-right").appendChild(transition);
-  worker.postMessage(pageNumber);
-
-  document.querySelector("#page-number").value = pageNumber;
-  document.querySelector("#progress-percentage").textContent = `${toPercent(pageNumber)} %`;
-  document.querySelector("wiki-range").value = toPercent(pageNumber);
-  document.querySelectorAll(".page-turner button").forEach((b) => {
-    b.disabled = pageNumber + BigInt(b.dataset.modifier) < 0 || pageNumber + BigInt(b.dataset.modifier) > lcgParams.m;
-  });
-}
-*/
