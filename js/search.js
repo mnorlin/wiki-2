@@ -8,7 +8,7 @@ document.querySelector("form").addEventListener("submit", (e) => {
   if (!searchTerm) {
     return;
   }
-  window.location.href = window.location.origin + "/search/" + encodeURIComponent(slice(searchTerm, 0, 3000));
+  window.location.href = window.location.origin + "/?page=/search&q=" + encodeURIComponent(slice(searchTerm, 0, 3000));
 });
 
 if (currentSearchTerm()) {
@@ -49,14 +49,14 @@ function generateResult(content, searchTerm, pageNumber) {
     <div>
       <a
         class="result-link"
-        href="/page?highlight=${encodeURIComponent(highlight)}#${pageNumber}"
+        href="/?page=/browse?highlight=${encodeURIComponent(highlight)}#${pageNumber}"
       >
         ${content === searchTerm ? "Exact match" : "Nested match"}
       </a>
       <nav class="result-breadcrumb">
         <a href="/">Wiki 2.0</a> ›
-        <a href="/page">Page</a> ›
-        <a href="${content === searchTerm ? `/link#${encoded}` : `/page#${pageNumber}`}">
+        <a href="/?page=/browse">Page</a> ›
+        <a href="${content === searchTerm ? `/?page=/link#${encoded}` : `/?page=/browse#${pageNumber}`}">
           ${toPercent(pageNumber)} %
         </a>
       </nav>
@@ -83,7 +83,7 @@ function generateResult(content, searchTerm, pageNumber) {
 }
 
 function currentSearchTerm() {
-  return decodeURIComponent(window.location.pathname.split("/search/")?.[1] || "");
+  return decodeURIComponent(new URLSearchParams(window.location.search).get("q") || "");
 }
 
 function buildWrappedResult(searchTerm, randomContent) {

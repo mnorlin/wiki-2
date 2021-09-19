@@ -81,7 +81,7 @@ export default class Book {
 
     pageDiv.appendChild(page.back);
     pageDiv.appendChild(page.front);
-    pageDiv.querySelector("wiki-bookmark").hardUrl = `/page#${pageNumber}`;
+    pageDiv.querySelector("wiki-bookmark").hardUrl = `/?page=/browse#${pageNumber}`;
 
     if (this.pages.length === 0 || pageNumber + 1n === this.currentPage) {
       pageDiv.classList.remove("shadow");

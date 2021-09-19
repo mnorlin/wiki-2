@@ -59,9 +59,12 @@ select:focus-visible {
 main {
   display: flex;
   flex-shrink: 0;
-  padding: 0 1rem;
   justify-content: center;
   margin: 3rem auto;
+}
+
+uri-router {
+  margin-left: 5rem;
 }
 
 mark,
