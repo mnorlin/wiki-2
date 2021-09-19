@@ -49,7 +49,6 @@ class WikiBookmark extends HTMLElement {
   get bookmarked() {
     const bookmarks = JSON.parse(localStorage.getItem("bookmarks"));
     const bookmark = bookmarks?.find((bookmark) => bookmark.path === this.getPath());
-
     return bookmark ? bookmark?.title || "" : undefined;
   }
 
@@ -84,7 +83,8 @@ class WikiBookmark extends HTMLElement {
   }
 
   getPath() {
-    return this.path || window.location.pathname + window.location.hash;
+    const currentPath = new URLSearchParams(window.location.search).get("path") || "/";
+    return this.path || currentPath + window.location.hash;
   }
 }
 

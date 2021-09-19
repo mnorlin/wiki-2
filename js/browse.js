@@ -104,10 +104,6 @@ function createFrontPage({ pageNumber, text }, isSafe = false) {
   front.querySelector(`wiki-text`).content = text;
   front.querySelector(`wiki-bookmark`).update();
 
-  front.querySelector(`wiki-bookmark`).bookmarked || pageNumber === 0n
-    ? front.querySelector(`wiki-text`).setAttribute("unsafe", "")
-    : front.querySelector(`wiki-text`).removeAttribute("unsafe");
-
   front.querySelector(".page-number").value = pageNumber;
   front.querySelector(".page-number").addEventListener("keypress", (e) => {
     if (e.keyCode == 13) {
@@ -121,6 +117,13 @@ function createFrontPage({ pageNumber, text }, isSafe = false) {
 
       setPage(newPage);
     }
+  });
+
+  setTimeout(() => {
+    // TODO: Why timeout needed?
+    front.querySelector(`wiki-bookmark`).bookmarked || pageNumber === 0n
+      ? front.querySelector(`wiki-text`).setAttribute("unsafe", "")
+      : front.querySelector(`wiki-text`).removeAttribute("unsafe");
   });
 
   return front;

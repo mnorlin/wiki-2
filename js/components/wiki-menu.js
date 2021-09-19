@@ -3,7 +3,7 @@ class MenuLinks extends HTMLElement {
     super();
 
     const menuItems = this.querySelectorAll("a");
-    const rootUrl = window.location.pathname.split("/")[1];
+    const rootUrl = new URLSearchParams(window.location.search).get("path") || "/browse";
 
     menuItems.forEach((item) => {
       if (item && !item.href.includes("#")) {

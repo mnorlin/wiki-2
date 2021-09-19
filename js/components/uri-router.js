@@ -7,7 +7,7 @@ class Router extends HTMLElement {
     this.path = this.getAttribute("path");
     this.routes = document.querySelectorAll("uri-router");
 
-    const currentPath = new URLSearchParams(window.location.search).get("page") || "/browse";
+    const currentPath = new URLSearchParams(window.location.search).get("path") || "/";
 
     if (!currentPath.startsWith(this.path)) {
       return;
@@ -17,7 +17,7 @@ class Router extends HTMLElement {
   }
 
   update() {
-    const currentPath = new URLSearchParams(window.location.search).get("page") || "/browse";
+    const currentPath = new URLSearchParams(window.location.search).get("path") || "/";
 
     for (let route of this.routes) {
       const otherPath = route.getAttribute("path");
