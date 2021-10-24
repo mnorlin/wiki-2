@@ -1,0 +1,74 @@
+:root {
+  --transition-time-short: 0.2s;
+  --transition-time-medium: 0.5s;
+  --transition-time-long: 0.5s;
+
+  --content-font: Helvetica, sans-serif;
+
+  --spacing: 1rem;
+  --border-radius: 7px;
+
+  --primary: rgb(225, 0, 0);
+  --secondary: rgb(0, 225, 225);
+
+  --gray-1: rgb(255, 255, 255);
+  --gray-2: rgb(241, 241, 241);
+  --gray-3: rgb(222, 222, 222);
+  --gray-4: rgb(188, 188, 188);
+  --gray-5: rgb(128, 128, 128);
+  --gray-6: rgb(67, 67, 67);
+  --gray-7: rgb(34, 34, 34);
+  --gray-8: rgb(0, 0, 0);
+
+  --bg-color: var(--gray-2);
+  --text-color: var(--gray-6);
+
+  --text-color-hover: var(--gray-8);
+  --text-color-active: var(--gray-8);
+
+  --menu-color: var(--gray-4);
+  --menu-color-hover: var(--gray-3);
+  --menu-color-active: var(--primary);
+  --menu-background: var(--gray-6);
+
+  --page-title-color: var(--gray-7);
+  --page-number-color: var(--gray-7);
+  --page-border: 0px solid transparent;
+  --page-shadow: none;
+  --page-bg-raw: 255, 255, 255;
+  --page-bg: rgb(var(--page-bg-raw));
+  --page-fold-color: var(--gray-4);
+
+  --bookmark: var(--gray-4);
+  --bookmark-bookmarked: var(--primary);
+
+  --button-bg: var(--gray-6);
+  --button-border: 1px solid var(--gray-3);
+  --button-color: var(--gray-1);
+  --button-shadow: none;
+  --button-hover-bg: var(--primary);
+  --button-hover-color: var(--gray-1);
+  --button-hover-shadow: none;
+
+  --input-bg: var(--gray-1);
+  --input-color: var(--gray-6);
+  --input-border: 1px solid var(--gray-3);
+  --input-shadow: none;
+
+  --box-bg: var(--gray-1);
+  --box-color: var(--gray-6);
+  --box-border-radius: var(--border-radius);
+  --box-border: 1px solid transparent;
+  --box-separator-border: 1px solid var(--gray-3);
+  --box-background: none;
+
+  --progress-progress-height: 4px;
+  --progress-progress-bg: var(--primary);
+  --progress-thumb-bg: transparent;
+  --progress-track-padding: 3px;
+  --progress-track-shadow: none;
+  --progress-track-border: 1px solid var(--gray-6);
+
+  --outline-color: var(--secondary);
+  --outline-text: var(--gray-6);
+}

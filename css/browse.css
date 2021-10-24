@@ -1,0 +1,122 @@
+#browse {
+  margin: 0 auto;
+}
+
+#browse .cover {
+  background-color: var(--menu-background, lightgray);
+  border-radius: var(--page-border-radius, var(--border-radius));
+  padding: var(--spacing);
+}
+
+#browse .wiki-image-wrapper {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#browse .wiki-text-wrapper {
+  display: flex;
+  flex-direction: column;
+  overflow-wrap: break-word;
+  max-width: 100%;
+  flex-grow: 1;
+  margin: 0 calc(3 * var(--spacing, 1rem));
+}
+
+#browse wiki-text {
+  display: block;
+  font-family: var(--content-font, monospace);
+  font-size: 0.8rem;
+  padding: 0.5em 0;
+  flex-basis: 0;
+  flex-grow: 1;
+  white-space: pre-wrap;
+}
+
+#browse .page-number-wrapper {
+  position: relative;
+}
+
+#browse .page-number-wrapper::before {
+  // Creates fade effect on scroll
+  content: "";
+  display: block;
+  position: absolute;
+  top: -1em;
+  right: 0;
+  left: 0;
+  height: 1em;
+  background: linear-gradient(rgba(var(--page-bg-raw), 0.001), var(--page-bg));
+  z-index: 1;
+}
+
+#browse .page-number {
+  text-overflow: ellipsis;
+  display: block;
+  text-align: center;
+  width: 70%;
+  margin: 0.5em auto 0.8em auto;
+  padding-bottom: 0.2em;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: 1px solid transparent;
+  transition: border-color var(--transition-time-medium);
+  color: var(--page-number-color);
+  border-radius: 0;
+}
+
+#browse .page-number:hover,
+#browse .page-number:focus {
+  transition: border-color var(--transition-time-medium);
+  border-bottom: 1px solid var(--page-number-color, black);
+}
+
+.page-turner button {
+  padding: 0;
+  line-height: 0.75;
+  background-color: transparent !important;
+  border-color: transparent !important;
+  border-radius: var(--border-radius);
+  color: var(--text-color);
+  font-size: 6rem;
+  font-family: "Arial";
+  opacity: 1;
+}
+
+.page-turner button:disabled {
+  pointer-events: none;
+  opacity: 0;
+}
+
+#range-wrapper {
+  margin-top: 0.25em;
+  text-align: center;
+  grid-column: 2;
+}
+
+#progress-percentage {
+  margin-bottom: var(--spacing, 1rem);
+}
+
+wiki-range::part(track),
+#search-results .track {
+  width: calc(100% - 2 * var(--progress-track-padding, 3px) - 2px);
+  border-radius: calc(var(--progress-progress-height) + var(--progress-track-padding));
+  background-color: var(--bg-color);
+  border: var(--progress-track-border, 1px solid black);
+  box-shadow: var(--progress-track-shadow);
+  padding: var(--progress-track-padding, 3px);
+}
+
+wiki-range::part(progress),
+#search-results .track .progress {
+  background: var(--progress-progress-bg, black);
+  height: var(--progress-progress-height, 5px);
+  border-radius: var(--progress-progress-height);
+  box-shadow: var(--progress-progress-shadow, none);
+}
+
+wiki-range::part(thumb) {
+  background-color: var(--progress-thumb-bg, transparent);
+}

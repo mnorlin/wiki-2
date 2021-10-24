@@ -1,0 +1,53 @@
+ul#bookmarks {
+  list-style: none;
+  padding: calc(0.5 * var(--spacing, 1rem)) var(--spacing, 1rem);
+  border: var(--box-border, 1px solid black);
+  border-radius: var(--border-radius);
+  background: var(--box-bg);
+  box-shadow: var(--box-shadow);
+  color: var(--box-color);
+  margin: 0 auto;
+  width: 30rem;
+  max-width: 30em;
+}
+
+ul#bookmarks:empty::before {
+  content: "No bookmarks";
+}
+
+ul#bookmarks li {
+  padding: var(--spacing, 1rem) calc(0.5 * var(--spacing, 1rem));
+}
+
+ul#bookmarks li::before {
+  content: "";
+  border-left: 6px solid var(--bookmark-bookmarked, black);
+  border-right: 6px solid var(--bookmark-bookmarked, black);
+  border-bottom: 6px solid var(--box-bg, white);
+  background-color: var(--bookmark-bookmarked, black);
+  margin-right: 0.75rem;
+  position: relative;
+  top: -3px;
+}
+
+ul#bookmarks li:not(:last-child) {
+  border-bottom: var(--box-separator-border, 1px solid black);
+}
+
+ul#bookmarks li:not(:last-child).default-separator {
+  border-width: 3px;
+  padding-bottom: calc(1.5 * var(--spacing, 1rem));
+  margin-bottom: calc(0.5 * var(--spacing, 1rem));
+}
+
+ul#bookmarks a {
+  text-decoration: none;
+  transition: color var(--transition-time-medium), text-shadow var(--transition-time-medium);
+}
+
+ul#bookmarks a:hover {
+  text-decoration: none;
+  transition: color var(--transition-time-medium), text-shadow var(--transition-time-medium);
+  color: var(--text-color-hover);
+  text-shadow: var(--text-shadow-hover);
+}

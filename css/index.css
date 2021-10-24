@@ -1,0 +1,144 @@
+@import url("/css/button.css");
+@import url("/css/effects.css");
+@import url("/css/menu.css");
+@import url("/css/wiki-bookmark.css");
+@import url("/css/wiki-bookmark-list.css");
+
+@import url("/css/browse.css");
+@import url("/css/page-flipping.css");
+@import url("/css/search.css");
+
+html {
+  font-family: Helvetica, sans-serif;
+  font-weight: 100;
+}
+
+body {
+  background-color: var(--bg-color, white);
+  margin: 0;
+  color: var(--text-color, black);
+  transition: background-color var(--transition-time-short);
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevents (strange?) horizontal overflow as a result of css transform and perspective */
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 100;
+}
+
+input {
+  font-family: inherit;
+  font-weight: 100;
+}
+
+a {
+  color: var(--text-color);
+}
+
+a:focus,
+input:focus,
+button:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+a:focus-visible,
+input:not([type="text"]):focus-visible,
+button:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--outline-color, black);
+  outline-offset: 0.3em;
+}
+
+mark,
+*::selection {
+  background-color: var(--outline-color, black);
+  font-weight: bold;
+  color: var(--outline-text, white);
+}
+
+@media only screen and (min-width: 1080px) and (min-height: 600px) {
+  :root {
+    --book-height: calc(100vh - 14 * var(--spacing));
+    --book-aspect-ratio: 1.618;
+  }
+
+  main {
+    display: flex;
+    flex-shrink: 0;
+    justify-content: center;
+    margin: 3rem auto;
+  }
+
+  uri-router {
+    margin-left: 5rem;
+  }
+
+  #browse {
+    display: grid;
+    column-gap: calc(2 * var(--spacing, 1rem));
+    grid-template-columns: min-content max-content min-content;
+    row-gap: 2em;
+    max-width: none;
+    justify-content: center;
+  }
+
+  #browse nav.page-turner {
+    grid-row: 1;
+  }
+
+  #browse .cover {
+    height: var(--book-height);
+    width: calc(var(--book-height) * var(--book-aspect-ratio));
+    grid-column: 2;
+    grid-row: 1;
+    max-width: calc(100vw - 18 * var(--spacing));
+    max-height: calc((100vw - 18 * var(--spacing)) / var(--book-aspect-ratio));
+    position: relative;
+  }
+
+  #browse > .page-turner {
+    display: flex;
+    align-items: center;
+  }
+
+  #browse wiki-text {
+    overflow: auto;
+  }
+
+  #browse #range-wrapper {
+    margin-top: 0;
+    grid-row: 2;
+  }
+
+  wiki-bookmark input[type="checkbox"] ~ input {
+    margin: 1em auto 0em auto;
+  }
+
+  .result-page {
+    margin: 0 auto;
+    height: 300px;
+    width: calc(300px * var(--book-aspect-ratio) / 2);
+  }
+}
+
+/* Mobile view not ready, so just disable it */
+@media only screen and (max-width: 1080px), (max-height: 600px) {
+  uri-router {
+    display: none;
+  }
+
+  main::before {
+    color: black;
+    display: block;
+    margin: 2rem;
+    content: "Wiki 2.0 Only works on screen widths 1080px <, and heights 600px <";
+  }
+
+  #menu-bar {
+    display: none;
+  }
+}
