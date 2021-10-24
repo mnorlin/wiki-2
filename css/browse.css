@@ -39,7 +39,7 @@
 }
 
 #browse .page-number-wrapper::before {
-  // Creates fade effect on scroll
+  /* Creates fade effect on scroll */
   content: "";
   display: block;
   position: absolute;

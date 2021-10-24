@@ -4,7 +4,7 @@ wiki-bookmark {
 }
 
 wiki-bookmark::after {
-  // Creates fade effect on scroll
+  /* Creates fade effect on scroll */
   content: "";
   display: block;
   position: absolute;
@@ -41,7 +41,7 @@ wiki-bookmark input[type="checkbox"] + label:after {
   border-left: 1em solid var(--bookmark, silver);
   border-right: 1em solid var(--bookmark, silver);
   border-bottom: 1em solid var(--page-bg, white);
-  background-color: var(--bookmark, silver); // Prevents a small gap between borders in some browsers
+  background-color: var(--bookmark, silver); /* Prevents a small gap between borders in some browsers */
   transition: border-color var(--transition-time-medium), background-color var(--transition-time-medium);
 }
 
