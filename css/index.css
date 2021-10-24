@@ -8,8 +8,15 @@
 @import url("/css/page-flipping.css");
 @import url("/css/search.css");
 
+@font-face {
+  font-family: "Benjamin Franklin";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Libre Baskerville Italic"), local("LibreBaskerville-Italic"), url(/BenjaminFranklin.ttf);
+}
+
 html {
-  font-family: Helvetica, sans-serif;
+  font-family: serif;
   font-weight: 100;
 }
 
@@ -23,7 +30,7 @@ body {
 h1,
 h2,
 h3 {
-  font-weight: 100;
+  font-family: "Benjamin Franklin";
 }
 
 input {

@@ -51,11 +51,11 @@ function generateResult(content, searchTerm, pageNumber) {
         class="result-link"
         href="/?path=/browse&highlight=${encodeURIComponent(highlight)}#${pageNumber}"
       >
-        ${content === searchTerm ? "Exact match" : "Nested match"}
+        ${content === searchTerm ? "Exakt träff" : "Mixad träff"}
       </a>
       <nav class="result-breadcrumb">
-        <a href="/">Wiki 2.0</a> ›
-        <a href="/?path=/browse">Page</a> ›
+        <a href="/">Boken</a> ›
+        <a href="/?path=/browse">Sida</a> ›
         <a href="${content === searchTerm ? `/?path=/link#${encoded}` : `/?path=/browse#${pageNumber}`}">
           ${toPercent(pageNumber)} %
         </a>
