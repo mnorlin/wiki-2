@@ -18,7 +18,7 @@
 #browse .wiki-text-wrapper {
   display: flex;
   flex-direction: column;
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
   max-width: 100%;
   flex-grow: 1;
   margin: 0 calc(3 * var(--spacing, 1rem));
