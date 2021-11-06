@@ -1,19 +1,7 @@
 wiki-bookmark {
   position: relative;
   font-size: 0.8rem;
-}
-
-wiki-bookmark::after {
-  /* Creates fade effect on scroll */
-  content: "";
-  display: block;
-  position: absolute;
-  right: 0;
-  bottom: -1em;
-  left: 0;
-  height: 1em;
-  background: linear-gradient(var(--page-bg), rgba(var(--page-bg-raw), 0.001));
-  z-index: 1;
+  overflow: hidden; /* Prevent vertical scroll after page flip due to left: -9999px */
 }
 
 wiki-bookmark label > * {

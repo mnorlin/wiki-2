@@ -18,8 +18,6 @@ body {
   margin: 0;
   color: var(--text-color, black);
   transition: background-color var(--transition-time-short);
-  min-height: 100vh;
-  overflow-x: hidden; /* Prevents (strange?) horizontal overflow as a result of css transform and perspective */
 }
 
 h1,
@@ -60,84 +58,75 @@ mark,
   color: var(--outline-text, white);
 }
 
-@media only screen and (min-width: 1080px) and (min-height: 600px) {
-  :root {
-    --book-height: calc(100vh - 14 * var(--spacing));
-    --book-aspect-ratio: 1.618;
-  }
-
-  main {
-    display: flex;
-    justify-content: center;
-    padding: 3rem;
-  }
-
-  uri-router {
-    margin-left: 5rem;
-  }
-
-  #browse {
-    display: grid;
-    column-gap: calc(2 * var(--spacing, 1rem));
-    grid-template-columns: min-content max-content min-content;
-    row-gap: 2em;
-    max-width: none;
-    justify-content: center;
-  }
-
-  #browse nav.page-turner {
-    grid-row: 1;
-  }
-
-  #browse .cover {
-    height: var(--book-height);
-    width: calc(var(--book-height) * var(--book-aspect-ratio));
-    grid-column: 2;
-    grid-row: 1;
-    max-width: calc(100vw - 18 * var(--spacing));
-    max-height: calc((100vw - 18 * var(--spacing)) / var(--book-aspect-ratio));
-    position: relative;
-  }
-
-  #browse > .page-turner {
-    display: flex;
-    align-items: center;
-  }
-
-  #browse wiki-text {
-    overflow: auto;
-  }
-
-  #browse #range-wrapper {
-    margin-top: 0;
-    grid-row: 2;
-  }
-
-  wiki-bookmark input[type="checkbox"] ~ input {
-    margin: 1em auto 0em auto;
-  }
-
-  .result-page {
-    margin: 0 auto;
-    height: 300px;
-    width: calc(300px * var(--book-aspect-ratio) / 2);
-  }
+/*@media only screen and (min-width: 1080px) and (min-height: 600px) {*/
+:root {
+  --book-aspect-ratio: 1.618;
+  --book-height: min(calc(100vh - 14 * var(--spacing)), calc((100vw - 20 * var(--spacing)) / var(--book-aspect-ratio)));
 }
 
-/* Mobile view not ready, so just disable it */
-@media only screen and (max-width: 1080px), (max-height: 600px) {
-  uri-router {
-    display: none;
-  }
+main {
+  display: flex;
+  justify-content: center;
+  padding: 3rem;
+}
 
-  main::before {
-    color: black;
-    display: block;
-    margin: 2rem;
-    content: "Wiki 2.0 Only works on screen widths 1080px <, and heights 600px <";
-  }
+uri-router {
+  margin-left: 5rem;
+}
 
-  #menu-bar {
-    display: none;
+#browse {
+  display: grid;
+  column-gap: calc(2 * var(--spacing, 1rem));
+  grid-template-columns: min-content max-content min-content;
+  row-gap: 2em;
+  max-width: none;
+  justify-content: center;
+}
+
+#browse nav.page-turner {
+  grid-row: 1;
+}
+
+#browse .cover {
+  height: var(--book-height);
+  width: calc(var(--book-height) * var(--book-aspect-ratio));
+  grid-column: 2;
+  grid-row: 1;
+  //max-width: calc(var(--book-height) - 4 * var(--spacing));
+  //max-height: calc((var(--book-height) - 4 * var(--spacing)) / var(--book-aspect-ratio));
+  position: relative;
+}
+
+#browse > .page-turner {
+  display: flex;
+  align-items: center;
+}
+
+#browse wiki-text {
+  overflow: auto;
+}
+
+#browse #range-wrapper {
+  margin-top: 0;
+  grid-row: 2;
+}
+
+wiki-bookmark input[type="checkbox"] ~ input {
+  margin: 1em auto 0em auto;
+}
+
+.result-page {
+  margin: 0 auto;
+  height: 300px;
+  width: calc(300px * var(--book-aspect-ratio) / 2);
+}
+
+@media only screen and ((max-width: 1024px) or (max-height: 1024px)) {
+  :root {
+    --book-height: 450px;
+  }
+  body {
+    min-width: 1024px;
+    max-height: calc(1024px / var(--book-aspect-ratio));
   }
 }

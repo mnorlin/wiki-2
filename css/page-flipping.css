@@ -22,8 +22,8 @@
   right: var(--spacing);
   bottom: var(--spacing);
   left: 50%;
-  background: var(--page-fold-color);
-  display: grid;
+  background: var(--page-bg);
+  box-shadow: 0 0 1px var(--page-fold-color);
 }
 
 #pages-wrapper .page.flipping {
@@ -38,42 +38,48 @@
 #pages-wrapper .page.flipped.flipping {
   transform: rotateY(0deg);
   transition: 1.5s;
-  transform-style: preserve-3d;
 }
 
-#pages-wrapper .page-front,
-#pages-wrapper .page-back {
-  grid-row: 1;
-  grid-column: 1;
+#pages-wrapper :is(.page-front, .page-back) {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transform-style: preserve-3d; /* Prevents firefox from showing backside of pages */
   display: flex;
   flex-direction: column;
   backface-visibility: hidden;
-  transform-style: preserve-3d;
-  opacity: 0.999; /* Chrome does not apply opacity 1 for some reason */
-  box-shadow: 0 0 1px var(--menu-background);
-}
-
-#pages-wrapper .page.shadow :is(.page-front, .page-back) {
-  opacity: 0;
-  transition-timing-function: ease-in-out;
-  transition-delay: 0.5s;
+  -webkit-backface-visibility: hidden; /* Safari */
+  opacity: 0.999; /* Opacity 1 does not work in chrome when preserve-3d is set */
 }
 
 #pages-wrapper .page-front {
-  background: linear-gradient(to right, var(--page-fold-color), var(--page-bg) 3%);
-  transition: 0.45s opacity ease-out;
+  box-shadow: inset 0.5rem 0 1rem -1rem black;
 }
 
 #pages-wrapper .page-back {
   transform: rotateY(-180deg);
-  background: linear-gradient(to left, var(--page-fold-color), var(--page-bg) 3%);
-  transition: 0.45s opacity ease-out;
+  box-shadow: inset -0.5rem 0 1rem -1rem black;
 }
 
-/* On first page, show smaller paper "folding" shadow */
-#pages-wrapper .page[data-page="0"] .page-front {
-  background: linear-gradient(to right, var(--page-fold-color), var(--page-bg) 0.5rem);
+/* Shadow when turning page */
+#pages-wrapper .page :is(.page-front, .page-back)::before {
+  opacity: 0;
+  pointer-events: none;
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  transition: 0.45s opacity ease-out;
+  background-color: var(--page-fold-color);
+  z-index: 2;
 }
-#pages-wrapper .page[data-page="-1"] .page-back {
-  background: linear-gradient(to left, var(--page-fold-color), var(--page-bg) 0.5rem);
+
+#pages-wrapper .page.shadow :is(.page-front, .page-back)::before {
+  opacity: 1;
+  transition-timing-function: ease-in-out;
+  transition-delay: 0.5s;
 }
