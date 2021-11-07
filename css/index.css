@@ -121,12 +121,20 @@ wiki-bookmark input[type="checkbox"] ~ input {
   width: calc(300px * var(--book-aspect-ratio) / 2);
 }
 
-@media only screen and ((max-width: 1024px) or (max-height: 1024px)) {
+@media only screen and (max-width: 1024px) {
   :root {
     --book-height: 450px;
   }
   body {
     min-width: 1024px;
-    max-height: calc(1024px / var(--book-aspect-ratio));
+  }
+}
+
+@media only screen and (max-height: 600px) {
+  :root {
+    --book-height: 390px;
+  }
+  body {
+    min-height: 600px;
   }
 }
