@@ -1,8 +1,8 @@
 .DS_Store
-/.vscode
-/.nova
-/node_modules
-
-.eslintrc.json
-package.json
-package-lock.json
+node_modules
+/build
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
