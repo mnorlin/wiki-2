@@ -1,0 +1,1 @@
+import{w as t}from"./index-b01864a9.js";const{subscribe:o,set:r}=t(JSON.parse(localStorage.getItem("bookmarks")||"{}"));o(s=>{localStorage.setItem("bookmarks",JSON.stringify(s))});const e={subscribe:o,set:r};export{e as b};
