@@ -4,7 +4,7 @@
 
 <style>
 	div {
-		overflow: scroll;
+		overflow: auto;
 		font-size: 0.8rem;
 		white-space: pre-wrap;
 		margin: 0 var(--l-8);

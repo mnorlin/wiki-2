@@ -161,7 +161,6 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		overflow: scroll;
 	}
 
 	.front .content {
