@@ -14,7 +14,7 @@
 		<Icon icon="bookmark" />
 	</a>
 
-	<a id="github" target="_blank" rel="noopener" href="https://github.com/mnorlin/wiki-2">
+	<a id="github" target="_blank" rel="noreferrer" href="https://github.com/mnorlin/wiki-2">
 		<Icon icon="github" />
 	</a>
 </nav>
